@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en"><!-- 当前语言是英文 -->
+
+</html>
+<!--
+ shift +alt +F:代码格式化
+alt +↑/↓:快速移动一行
+shift +alt +↑/↓:快速复制一行
+ctrl+H:快速替换-->
+
+<head><!-- 浏览器的头部信息\head里面必须包含title -->
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 标签左中右位置 -->
+    <h1 align="left">一级标题</h1>
+    <h2 align="center">二级标题</h2>
+    <h3 align="right">三级标题</h3>
+    <h4>四级标题</h4>
+    <h5>五级标题</h5>
+    <h6>六级标题...</h6>
+
+    <!-- h$*6一次编辑六个标签,数字是几就是几个标签 -->
+    <p>这是一个段落</p>
+    <p>这是另一个段落</p>
+    <p>我希望在一个段落<br/>中进行换行</p>
+    <hr color="red" width="300px"   size="20px"  align="left" >
+    <hr color="red" width="300px"   size="20px"  align="right"> 
+    <hr color="red" width="300px"   size="20px"               > 
+    <!-- 这是一条横线 
+        颜色:        长度:单位像素   宽度:单位像素 水平线的对齐方式:默认居中
+    -->
+
+
+
+
+
+
+    <img src="1.jpg" alt="风景图" width="300" title="风景图">
+    <img src="2.jpg" alt="奥特曼" height="300" title="奥特曼">
+    <!-- 图片  -->
+    <!--
+        src:放图片名字(路径)
+        alt:规定图像的替代文本,图片出现不了会出现
+        width:规定图像的宽度,一般只规定,避免失真
+        height:规定图像的高度
+        title:鼠标悬停上给的提示
+    -->
+
+
+
+
+
+
+<!--绝对路径:电脑盘符和具体的位置 -->
+<img src="D:\桌面\PS\23.jpeg" alt="会冒烟的">
+<!-- 相对路径:学习中比较多
+ 子集关系:"/",需要写他的直属上级文件夹名称
+ 父级关系:"../"不需要写父级名称
+ 同级关系:"./",可以省略
+ -->
+ <!-- 网络路径:工作中比较多 -->
+<img src="http://img.k2r2.com/uploads/001/pic/20190526154752118.jpg">
+
+<!-- 标签的超文本链接 
+ <a >你好</a>
+ <a ><img src="http://img.k2r2.com/uploads/001/pic/20190526154752118.jpg" alt="大狮子"></a>
+上述两种没有要跳转的位置-->
+ <a href="https://my.hgu.edu.cn/?keyword=学生证#/search">
+    地大
+</a>
+ <!-- 
+ 未访问过的链接是蓝色字体并且带有下划线
+ 访问过的为紫色并且带有下划线
+ 点击连接时是红色带有下划线
+ css可以改变颜色等等效果
+ 当把鼠标移动到超链接上会变成一个小手
+ -->
+
+
+
+
+
+<!-- 文本标签 可以p标签嵌套 -->
+<em>em白菜</em><!-- 着重文字 -->
+<i>i白菜</i><!-- 斜体 -->
+<b>b白菜</b><!-- 粗体 -->
+<strong>strong白菜</strong><!-- 加重语气 -->
+<span>span白菜</span><!-- 便于后续css -->
+<del>del白菜</del><!-- 删除线 -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 列表标签 -->
+<!-- 有序列表 :始于<ol>标签,每个项目始于<li>标签-->
+
+<Ol type="1"><!-- type更改展示方式 -->
+    <li>苹果</li>
+    <li>橘子</li>
+    <li>栗子</li>
+    <li>大甘蔗</li>
+</Ol>
+<Ol type="A">
+    <li>苹果
+        <OL>
+            <LI>肘子</LI><!-- 可以嵌套 -->
+            <LI>五花肉</LI>
+        </OL>
+    </li>
+    <li>橘子</li>
+    <li>栗子</li>
+    <li>大甘蔗</li>
+</Ol>
+<Ol type="I">
+    <li>苹果</li>
+    <li>橘子</li>
+    <li>栗子</li>
+    <li>大甘蔗</li>
+</Ol>
+
+
+
+
+
+
+
+
+
+<!-- 无序列表 :始于<ul>标签,每个项目始于<li>标签-->
+    <!-- 除了正常的无序列表的应用,还有导航位置 -->
+     <!-- 快捷键:ul>li*5 -->
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+<ul><!-- 也可以实现嵌套 -->
+    <li>苹果</li>
+    <li>香蕉</li>
+    <li>橘子</li>
+</ul>
+
+<ul type="disc"><!-- 与默认的相同 -->
+    <li>苹果</li>
+    <li>香蕉</li>
+    <li>橘子</li>
+</ul>
+<ul type="circle"><!-- 空心圆 -->
+    <li>苹果</li>
+    <li>香蕉</li>
+    <li>橘子</li>
+</ul>
+
+<ul type="square"><!-- 小方块 -->
+    <li>苹果</li>
+    <li>香蕉</li>
+    <li>橘子</li>
+</ul>
+
+<ul type="none"><!-- 不显示 -->
+    <li>苹果</li>
+    <li>香蕉</li>
+    <li>橘子</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 标签之表格 --><!-- 快捷键:table>tr*2>td*3{单元格}-->
+<table><!-- 表格 -->
+    <tr><!-- 行 -->
+            <td>1</td><!-- 列:单元格个数 -->
+            <td>2</td>
+            <td>3</td>
+
+    </tr>
+    <tr>
+        <td>1</td><!-- 列:单元格个数 -->
+        <td>2</td>
+        <td>3</td>
+
+    </tr>
+    <tr>
+        <td>1</td><!-- 列:单元格个数 -->
+        <td>2</td>
+        <td>3</td>
+
+    </tr>
+</table>
+<table border="1" width="400" height="30">
+<!--外边框线的粗细  宽          高           -->
+    <tr>
+        <td>单元格</td>
+    </tr>
+    <tr>
+        <td>单元格</td>
+    </tr>
+    <tr>
+        <td>单元格</td>
+    </tr>
+</table>
+
+
+
+
+
+
+
+
+
+<!-- 合并单元格 -->
+<p>合并单元格4和8</p> <!-- 竖直合并:rowspan -->
+<p>合并单元格9和10</p> <!-- 水平合并:colspan -->
+<p>合并单元格7和11 15</p> 
+<p>水平合并:保左删右  竖直合并:保上删下</p>
+<table border="1" width="400" heigh="100">
+    <tr>
+        <td>单元格1</td><!-- 上下左右同时合并就写两句 2*2-->
+        <td>单元格2</td>
+        <td>单元格3</td>
+        <td rowspan="2">单元格4</td><!-- 合并之后只需把原来的单元格删除即可 -->
+    </tr>
+    <tr>
+        <td>单元格5</td>
+        <td>单元格6</td>
+        <td rowspan="3">单元格7</td>
+    </tr>
+    <tr>
+        <td colspan="2">单元格9</td>
+        <td>单元格12</td>
+    </tr>
+    <tr>
+        <td>单元格13</td>
+        <td>单元格14</td>
+        <td>单元格16</td>
+    </tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- form表单  基本组成部分:表单标签,表单域,表单按钮-->
+<form>
+    <input><!-- 输入框 -->
+    <input type="submit"><!--按钮:两种方式都可 -->
+    <button>按钮</button>
+</form>
+<form>
+    <input type="text">
+    <input type="submit">
+</form>
+<form>
+    <p>
+        用户名: <input type="text">
+        <br>
+        密码框: <input type="password">
+        <br>
+        <input type="submit" value="提交"><!-- 提交按钮,可以更改文本 -->
+    </p>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+            块级元素                                        内联元素
+
+块元素会在页面中独占一行(自上向下垂直排列)          行内元素不会独占页面中的一行,只占自身的大小
+        可以设置width,heigh属性                         行内元素设置width,heigh无效
+一般块级元素可以包含行内元素和其他块级元素            一般内联元素包含内联元素不包含块级元素
+div,form,h1~h6,hr,p,table,ul,等等                   a,b,em,i,span,strong等
+
+行内块级元素(特点:不换行,能够识别宽高) button,img,input等等
+-->
+    <h1>标题</h1>
+    <p>段落</p>
+    <div>没学</div>
+    <form>段落</form>
+    <hr>
+    <a> href="#">超文本链接</a><!-- #代表没有跳转地址 -->
+    <b>粗体</b>
+
+
+
+
+
+
+
+
+
+<!-- div标签,容器标签 -->
+<div id="header"><!-- ID及属性 -->
+    <Ul>
+        <li>主导航</li>
+    </Ul>
+</div>
+<div>
+    <img src="" alt="">
+</div>
+<div>
+    <img src="" alt="">
+    <p>段落</p>
+</div>
+
+
+<header></header><!-- 头部 -->
+<nav></nav><!-- 导航 -->
+<article><!-- 独立的文章块 -->
+    <section></section><!-- 定义文章中的章节,页眉页脚 -->
+</article>
+<aside></aside><!-- 侧边栏 -->
+<footer></footer><!-- d底部 -->
+
+</body>
+
+</html>
+<!--  -->

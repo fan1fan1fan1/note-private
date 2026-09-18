@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset = "UTF-8">
+    <title>jinja2</title>
+</head>
+<body>
+    <!-- 1.有的注释形式是这样   {# {{ ... }} #} -->
+
+
+
+    <!--  2.传参  -->
+    <h1>您访问的博客详情是：{{ blog_id }}</h1>
+
+
+    <!--  获取index中参数  -->
+    <div>
+        {{url_str}}
+
+        {{my_list}}
+        <!--   取索引2的数据  -->
+        {{my_list[2]}}
+
+        {{my_dict}}
+        {{my_dict['name']}}
+    </div>
+
+
+    <!--  获取/variable中的参数   -->
+    <div>
+        <!--  1.获取姓名  -->
+        {{ user.username }}
+
+        <!--  2.获取邮箱  -->
+        {{ user.username }} / {{ user.email }}
+    </div>
+
+
+    <!--  3.获取属性  -->
+    <div>
+        <!-- 获取字典内的数据 字典名['数据']  -->
+        {{ person['name'] }}
+    </div>
+
+    <!--  3.for循环 if条件使用  -->
+
+    {% for index in my_list %}
+        {% if index > 3 %}
+            {{ index }}
+        {% endif %}
+    {% endfor %}
+
+
+
+    <!--  4.过滤器 |  -->
+    <!--  格式:  变量名 | 过滤器(字面量)  -->
+
+    <!-- (1)字符串操作 -->
+    <!-- safe：禁用转义 -->
+    <p>{{ '<em>hello</em>' | safe }}</p>
+
+    <!-- capitalize：把变量值的首字母转成大写，其余字母转小写   Hello -->
+    <p>{{'hello' | capitalize }}</p>
+
+    <!-- lower：把值转成小写   hello -->
+    <p>{{ 'HELLO' | lower }}</p>
+
+    <!-- upper：把值转成大写   HELLO -->
+    <p>{{ 'hello' | upper }}</p>
+
+    <!-- title：把值中的每个单词的首字母都转成大写   Hello -->
+    <p>{{ 'hello' | title }}</p>
+
+    <!-- reverse：字符串反转  hello -->
+    <p>{{'olleh' | reverse }}</p>
+
+    <!-- format：格式化输出 name is 17 -->
+    <p>{{ '%s is %d' | format('name', 17) }}</p>
+
+    <!-- striptags：渲染之前把值中所有的HTML标签都删掉-->
+    <p>{{ '<em>hello</em>' | striptags }}</p>
+
+    <!-- truncate: 字符串截断-->
+    <p>{{ 'hello every one' | truncate(9)}}</p>
+
+
+    <!--  (2)列表操作  -->
+    <!--first：取第一个元素-->
+    <p>{{[ 1,2,3,4,5] | first }}</p>
+
+    <!-- last：取最后一个元素-->
+    <p>{{[1,2, 3, 4,5,6] | last }}</p>
+
+    <!-- length：获取列表长度-->
+    <p>{{ [1, 2, 3, 4, 5, 6] | length }}</p>
+
+    <!-- sum：列表求和-->
+    <p>{{ [1, 2, 3, 4, 5, 6] | sum }}</p>
+
+    <!-- sort：列表排序-->
+    <p>{{ [6,2, 3, 1, 5,4] | sort }}</p>
+
+
+    <!-- (3)链式调用 [6，2， 3, 1, 5，4] | sort | first  -->
+
+
+
+    <!--  5.表单  -->
+    <form method="post">
+        <label>用户名：</label><input type="text" name="username"><br>
+        <label>密码:</label><input type="password" name="password"><br>
+        <label>确认密码:</label><input type="password" name="password2"><br>
+        <input type="submit" value="提交"><br>
+        {% for message in get_flashed_messages() %}
+            {{ message }}
+        {% endfor %}
+    </form>
+    <hr>
+    <form method="post">
+        {{form.csrf_token()}}
+        {{form.username.label}}{{form.username}}<br>
+        {{form.password.label}}{{form.password}}<br>
+        {{form.password2.label}}{{form.password2}}<br>
+        {{form.submit}}<br>
+    </form>
+</body>
+</html>

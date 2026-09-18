@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- en 英语 -->
+<!-- CH-CN 中文 -->
+
+<!-- html标记语言 由标签组成  -->
+<!-- web标准 结构structure 网页元素 html-->
+<!-- 表现presentation 外观样式 css-->
+<!-- 行为behavior javascript -->
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 字符集 不输入会乱码 UTF-8万国集  GB2312 BIG5 GBK中文字符集 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- ctrl+s自动对齐 -->
+    <!-- ctrl+/注释 -->
+    <!-- shift alt ⬇ 快速复制粘贴 -->
+    <!-- ctrl+扩大 ctrl-缩小 -->
+    <!-- 双击选中 按住ctrl+d 快速批量更改 -->
+    <!-- ctrl alt ⬇ 快速添加 -->
+    <!-- ctrl+h 上方查找并输入 -->
+
+    <!-- div*3 -->
+
+
+    <br />
+    <!--单标签 换行标签 使两段文字保持较大距离-->
+    <hr>
+    <!-- 隔线 -->
+
+    <h1></h1>
+    <h6></h6>
+    <!-- 标题标签 -->
+
+    <p></p>
+    <!-- 段落标签 -->
+
+    <strong></strong>
+    <!-- 字体加粗 -->
+    <em></em>
+    <!-- 斜体字 -->
+    <del></del>
+    <!-- 删除线 -->
+    <ins></ins>
+    <!-- 下划线 -->
+
+
+
+
+    <div></div>
+    <span></span>
+    <!-- 方块盒子 布局页面 用于分区 div一行只能有一个 -->
+
+
+
+
+    <img src="图像URL" />
+    <!-- 单标签 用于显示图片 src是img的属性 指定了文件路径和文件名 -->
+
+    <img src="微信图片_202409212002402.jpg">
+    <!-- 将文字放入网页时 需保证文件与图片处于同一文件夹 -->
+
+    <img src="图像URL" alt="图片内容" title="图片解释" />
+    <!--当图片不显示时 用alt使文字代替图片 
+    title当鼠标放到图片上时的文字解释 -->
+
+    <img src="图像URL" width="宽度" height="高度" border="设置边框" />
+
+
+
+
+    <!-- 制作网站 目录文件夹 vscode 左上角文件 打开文件夹 左侧案例 
+     点击小图标新建文件夹 后缀.html -->
+
+    <!-- 路径 1.同一级相对路径 与编辑文件同一目录下图片-->
+    <img src="图片名称">
+
+    <!-- 2.下一级相对路径 图片所在文件夹与编辑文件于同一目录 使用符号 / -->
+    <img src="文件夹/图片名称 /">
+
+    <!-- 3.上一级相对路径编辑文件所在文件夹与图片与同一目录 使用符号 ../ -->
+    <img src="../图片名称" />
+
+    <!-- 引用绝对路径 -->
+    <img src="文件路径 图片名称" />
+    <!-- 打开网站 右键复制图片地址 可使用在src中 -->
+
+
+
+    <a>链接</a>
+    <!-- 超链接标签 anchor 从一个和页面链接到另一个页面 -->
+    <a href="跳转目标" target="目标窗口的弹出方式">文本或图像</a>
+    <!-- herf 必须属性 用于指定链接标签 -->
+    <!-- target 打开页面的方式 -->
+
+
+
+    <!-- 外部链接 例 -->
+    <a href="https://www.baidu.com/">百度</a>
+
+    <a href="http://www.baidu.com/" target="_self">百度</a>
+    <!-- 加入_self 会替代掉上一个页面 即上一个页面自动关闭 -->
+
+    <a href="http://www.qq.com/">腾讯</a>
+
+    <a href="http://www.qq.com/" target="_blank">腾讯</a>
+    <!-- 加入 _blank 打开一个新的页面 -->
+
+
+
+    <!-- 内部链接 网站内部页面之间的连接 -->
+    <a href="index.html">首页</a>
+    <!-- 在目录文件夹中创建一个文件 输入页面信息 打开编辑文件 ='文件的title' -->
+
+    <!-- 空链接 没有确定链接目标 -->
+    <a href="#">首页</a>
+
+    <!-- 下载链接 点击后下载一个文件或压缩包 有后缀-->
+    <a href="压缩包名称">下载文件</a>
+
+    <!-- 锚点链接 快速定位到链接中的某个位置-->
+    <p>
+        <a href="#位置名字">位置</a>
+        <h10 id="位置名字"></h10>
+    </p>
+
+
+    <!-- 用字符替代特殊字符 -->
+    <!-- 空格 -->
+    讲&nbsp&nbsp究
+
+    <!-- 小于号 大于号 -->
+    &lt;&gt;
+
+
+
+    <!-- 表格 -->
+    <table>
+        <tr>
+            <!-- 行标签 -->
+            <th></th>
+            <!-- 表头标签 居中加粗 -->
+            <td></td>
+            <!-- 单元格标签 -->
+        </tr>
+    </table>
+
+    <!-- 文字位置更改 使用align → left center right 写在表格标签里面-->
+    <h1 align="center">居中</h1>
+    <table align="center"></table>
+
+
+    <p>
+        <!-- 表格边框 -->
+    <table border="1"></table>
+    </p>
+
+
+    <!--边框距离  -->
+    <table cellpadding="10" cellspacing="0"></table>
+    <!-- cellpadding为边框与内容间距离 cellspcing为边框间距 -->
+
+
+    <thead></thead>
+    <!-- 表格头部区域 -->
+
+    <tbody></tbody>
+    <!-- 表格主体区域 -->
+
+
+    <!-- 合并单元格 -->
+    <p><!-- 跨行合并 最上侧单元格为目标单元格 写合并代码 -->
+        <rowspan="合并单元格的个数">
+            </rowspan>
+    </p>
+    <p>
+        <!-- 跨列合并 最左侧单元格为目标单元格 写合并代码 -->
+        <colspan="合并单元格的个数">
+            </colspan>
+    </p>
+
+    <!-- 1确定跨行还是跨列 
+      2确定目标单元格
+      3删除多余单元格-->
+
+
+
+    <!-- 列表 -->
+
+    <!-- 无序列表 并列式 -->
+    <h4>列表标题</h4>
+    <ul>
+        <li>列表项</li>
+        <li>列表项</li>
+        <li>列表项</li>
+    </ul>
+
+    <!-- ul里只能放li 但li里面可以放任意元素 -->
+
+
+
+    <!-- 有序列表 -->
+    <h5>列表标题</h5>
+    <ol>
+        <li>列表项1</li>
+        <li>列表项2</li>
+        <li>列表项3</li>
+    </ol>
+
+
+
+    <!-- 自定义列表 -->
+    <dl>
+        <dt>名词1</dt>
+        <dd>名词1解释1</dd>
+        <!-- 隶属于dt -->
+        <dd>名词1解释2</dd>
+        <dd>名词1解释3</dd>
+
+        <dt>名词2</dt>
+        <dt>名词3</dt>
+    </dl>
+
+    <!-- dl里只能包含dt dd -->
+    <!-- dt dd个数不受限制 一个dt可包含多个dd -->
+
+
+
+    <!-- 表单 -->
+    <h1>表单标题</h1>
+
+
+    <!-- form标签 定义表单域 提交给服务器 -->
+    <form action="url地址" method="提交方式 eg.POST" name="表单域名称 eg.name1"> <br>
+        各种表单域控件
+
+
+        <!-- input输入型元素 -->
+        <input type="属性值" name="username " />
+        <!-- 为了方便区分在每个input type=""后加name=""区分 -->
+        <!-- name用于定义input元素名称 value规定input元素的值 name和value给后台人员使用-->
+        <!-- 单选和多选框要用相同name值 -->
+
+        <!-- checked用于规定首次加载时默认选中 针对单选和多选按钮 格式为checked="checked"-->
+        <!-- maxlength规定最大字数 -->
+
+
+        <!-- 属性值
+button定义按钮    checkbox定义复(多)选框     file查询并输入文件   hidden隐藏文段(使用密码)  image定义图片提交形式
+password定义密码  radio定义单选按钮          reset定义重置按钮    submit定义提交按钮        text输入文段 -->
+
+        用户名：<input type="text" name="username" value="请输入用户名" maxlength="6"> <br>
+        密码：<input type="password" name="pwd"> <br>
+        <!-- pwd为密码 -->
+        <!-- name是表单元素名字 这里性别单选按钮必须有相同的名字name 才可以实现多选一 -->
+        性别：男<input type="radio" name="sex" value="男"> 女<input type="radio" name="sex" value="女" checked="checked">
+        <br>
+        爱好：爱好1<input type="checkbox" name="hobby" value="爱好1"> 爱好2<input type="checkbox" name="hobby" value="爱好2">
+        爱好3<input type="checkbox" name="hobby" value="爱好3"> <br>
+        <input type="submit" value="免费注册"> <br>
+        <input type="reset" value="重新填写"> <br>
+        <input type="button" value="获取短信验证码"> <br>
+        <!-- button后期结合js使用 -->
+        上传头像：<input type="file">
+
+
+        <!-- label标签 点击文字或图片 即可输入 不需点击按钮 -->
+        <label for="sex">男</label> <br>
+        <input type="radio" name="sex" id="sex" /> <br>
+        <!-- for和id属性相同 -->
+        <label for="text">用户名:</label> <input type="text" id="text"> <br>
+        <input type="radio" id="nan" name="sex"><label for="nan">男</label>
+        <input type="radio" id="nv" name="sex"><label for="nv">女</label> <br>
+
+
+
+        <!-- select下拉型元素 -->
+        <select>
+            <option>选项1</option>
+            <option>选项2</option>
+            <option>选项3</option>
+        </select> <br>
+        <!-- select="select" 默认选项 -->
+
+
+
+        <!-- textarea文本型元素 -->
+        今日反馈：
+        <textarea rows="3" cols="20">文本内容</textarea> <br>
+        <!-- cols每行字符数 rows显示的行数 在后面学习中不使用-->
+    </form>
+</body>
+
+</html>

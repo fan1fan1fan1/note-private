@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 内嵌式的JS 使用script（脚本） -->
+
+    <script>
+        // *********************************************************第一部分**************************************
+        alert('沙漠骆驼')
+
+        // 我是注释
+        /*我是多行注释*/
+
+        prompt('请输入你的年龄')
+        // 这是一个输入框   prompt取过来是字符型的
+
+        alert('计算的结果是')
+        // 弹出警示框 输出的 展示给用户的
+
+        console.log('我是程序员能看到的')
+        // 控制台输出 给程序员测试用的 点击f12 进入测试工具
+
+        // 声明变量 
+        var age
+        age = 10
+        console.log(age)
+        // 进入 f12进入控制台可见
+        var age = 18
+
+
+        // var age = 18
+        // address = 火影村
+        // gz = 2000
+        // 多个变量同时声明 用逗号隔开
+
+
+
+        // 声明变量特殊情况
+        // 只声明未赋值 →输出结果undefined
+        // 未声明未赋值直接输出→报错
+        // 不声明直接赋值→可以使用
+
+        // 有一句报错后 后面将不再执行
+
+
+
+        // eg.交换两个变量的值
+        // 需要三个盒子 两个用于交换 一个作为临时变量空间
+        // 1. 把apple1给临时变量
+        // 2. 把apple2给apple1
+        // 3. 把临时变量中的值给apple2
+
+        var temp; // 声明一个临时变量
+        var apple1 = '青苹果'
+        var apple2 = '红苹果'
+
+        temp = apple1
+        apple1 = apple2
+        apple2 = temp
+
+        console.log(apple1)
+        console.log(apple2)
+
+
+
+        // 数据类型
+        // js的数据类型是只有程序运行过程中，根据等号右边的值来确定的 动态语言 数据类型可以改变
+
+        // 简单数据类型 Number String Boolean Undefined Null
+        // 复杂数据类型 object
+
+        // 简单数据类型 Number 数字型：整型+浮点型
+        //             Boolean 布尔类型：true false
+        //             String 字符串类型：""
+        //             Undefined 未赋值定义 
+        //             Null 空值
+
+        // var num2 = 010
+        // console.log(num2)
+        // 数字前面+0 表示八进制
+
+        // var num3 = x10;
+        // console.log(num3)
+        // 数字前面+x 表示十六进制
+
+        // 最大值 最小值
+        alert(Number.MAX_VALUE)
+        alert(Number.MIN_VALUE)
+
+        console.log(Number.MAX_VALUE)
+        console.log(Number.MIN_VALUE)
+
+        // 无穷大 无穷小
+        alert(Infinity)
+        alert(-Infinity)
+
+        console.log(Infinity)
+        console.log(-Infinity)
+
+        // 非数值
+        alert(NaN);
+        console.log('pink老师' - 100) // NaN
+
+
+
+        // 验证某值是否为数字 isNaN()
+        // 如果是数字→false 如果不是数字→true
+        console.log(isNaN(12))
+        console.log(isNaN('pink'))
+
+
+
+        // 字符串String " "  ' ' 推荐用单引号
+
+        // 引号嵌套原则: 单引号嵌套双引号 双引号嵌套单引号 
+        var str = '我是"富婆"'
+        console.log(str)
+
+        // 字符串转义符 \ 写在''里面
+        // \n换行  \\斜杠  \''单引号   \""双引号  \t tab缩进  \b空格
+
+
+
+        // 检测字符串长度 length
+        var str = 'my name is pink'
+        console.log(str.lenth)         // 15
+
+
+
+        // 多个字符串的拼接  字符串 + 任何类型 = 拼接后的新字符串
+        console.log('沙漠' + '骆驼')    // 沙漠骆驼
+        console.log(12 + 12)           // 24
+        console.log('12' + 12)         // 1212
+
+        // 字符串拼接的加强
+        var age = 18
+        console.log('pink老师' + age + '岁')
+        // 变量不要写在字符串里面 通过与字符串连接实现
+        // 写法: 引引加加
+
+
+
+        // 案例 显示年龄 交互效果程序: 
+        // 1.弹出一个输入框prompt 用户输入  
+        // 2.程序内部处理 进行字符串拼接  
+        // 3.输出结果
+        var ageUser = prompt('请输入您的年龄')
+        var str1 = '您今年已经' + age + '岁了'
+        alert(str1)
+
+
+
+        // 布尔型 Boolean 
+        var flag = true
+        console.log(flag + 1)   // 输出结果 2  true参与加法运算->1   false->0
+
+
+
+        // undefined 未定义     
+        // null 空值 
+        // NaN 不是一个数字   undefined + 数字 -> NaN
+
+
+
+        // 检测变量数据类型 typeof
+        var num4 = 10
+        console.log(typeof num4)  // number
+        // 数值-蓝色偏紫 字符串-黑色 布尔-蓝色偏浅
+
+
+
+        // 字面量 能够一眼看出来是什么类型的格式
+
+
+
+        // 数据类型的转化   
+        // 1.转换成字符串型 
+        // 方法一 toString()
+        var number1 = 1
+        alert(number1.toString())
+
+        // 方法二 String强制转换
+        alert(String(number1))
+
+        // 方法三 + 拼接字符串
+        alert(num + "我是字符串")
+
+
+
+        // 2.转换成数字型
+        // 方法一 parseInt(string)函数 字符串转整型
+        var age1 = prompt('请输入你的年龄')
+        console.log(parseInt(age1))         // 只能输出整数小数位直接省略
+
+        console.log(parseInt('120px'))      // 输出结果120 parseInt将会去掉单位
+        // console.log(parseInt(rem120px))     // 输出结果NaN 
+
+        // 方法二 parseFloat(string)函数 string转浮点数
+        console.log(parseFloat(3.14))      // 与上一个用法相同 但可输出小数
+
+        // 方法三 Number()强制转换字符类型 string转数值
+        var str1 = '123'
+        console.log(Number(str1))
+
+        console.log(Number('12'))
+
+        // 方法四 js隐式转换(- * /) 利用算术运算符 - * / 转数值
+        console.log('12' - 0)              // 输出结果 12
+        // console,log('123' - '120')         // 输出结果 3
+
+
+
+        // 案例1  计算年龄
+        // 1. 弹出一个输入框prompt 让用户输入出生年龄 (用户输入)
+        // 2. 把用户的输入值变量保存起来，然后用今年的年份减去变量值，结果就是现在的年龄 (程序内部处理)
+        // 3. 弹出警示框alert,把计算结果输出 (输出结果)
+
+        var year1 = prompt('请您输入出生年份')
+        var age2 = 2024 - year1    // year取字符串 运用隐式转换
+        alert('您今年已经' + age2 + '岁了')
+
+
+
+        // 案例2  简单加法器
+        // 计算两个数的值，用户输入第一个数之后，继续弹出第二个输入框继续输入第二个值，最后通过弹出窗口显示两次输入值相加的结果 
+        // 1.弹出第一个窗口，输入第一个值，保存下来
+        // 2.再弹出第二个窗口，输入第二个值，保存下来
+        // 3.把这两个数值相加，并将结果赋给新变量 (注意数据类型的转换)
+        // 4.弹出警示框alert，把计算结果输出 (输出结果)
+
+        var number2 = prompt('请你输入第一个值:')
+        var number3 = prompt('请你输入第二个值:')
+        var sum1 = parseFloat(number2) + parseFloat(number3)
+        alert('你的结果是:' + sum1)
+
+
+
+        // 3.转化为布尔型
+        // Boolean()函数 
+        // 代表空，否的值都会被转化为false  eg. '' 0 NaN null underfined
+        // 其余值转化为true 
+        console.log('小白')   // 输出结果 true
+
+
+
+        // 运算符 操作符   
+        // 用于实现赋值，比较，执行的符号
+        // 1.算术运算符 2.递增递减运算符 3.比较运算符 4.逻辑运算符 5.赋值运算符
+
+
+        // 2.递增++ ，递减--运算符   
+        // 可以放在前面(前置） 也可以放在后面(后置) 
+        var age3 = 10
+        console.log(age3++)
+
+        // 前后置区别  前置: 先自加，后返回值 ，  后置: 先返回值，后自加
+        console.log(age3++ + 10)   // 后置结果20
+        console.log(++age3 + 10)   // 前置结果21
+
+
+        // 3.比较运算符 返回布尔值   
+        // ===,!== 全等 数值,数据类型都相等          =赋值 ==判断 ===全等
+        //  console.log(18 = '18')        // true
+        console.log(18 === '18')      // false
+
+
+        // 4.逻辑运算符 多个条件判断 
+        // &&并且 ||或者 !不是
+        console.log(3 > 5 && 3 > 2)   // false
+        console.log(3 > 5 || 3 > 2)   // true
+        console.log(!true)            // false
+
+
+
+        // 短路运算 逻辑中断 (面试考核点)
+        // 左边的表达式可以确定结果时，不再计算右边的
+
+        // 1.逻辑与
+        // 原理:  (1)表达式:  表达式1 && 表达式2
+        // (2)如果第一个表达式的值为真，则返回表达式2
+        // (3)如果第一个表达式的值为假，则返回表达式1
+        console.log(123 && 456)   // 456
+        console.log(0 && 1)       // 0
+
+
+        // 2.逻辑或
+        // 原理: 如果第一个表达式的值为真，则返回表达式1 如果第一个表达式的值为假，则返回表达式2
+        console.log(123 || 456)   // 123
+        console.log(0 || 1)       // 1   
+
+        var num1 = 0
+        console.log(123 || num1++)
+        console.log(num1)         // 输出结果为 0
+
+        // 在逻辑或中 因为123结果为真 则执行123 不执行num1++ 因此num1值不变 输出结果为0
+
+
+        // 5.赋值运算符   +=  -=  *=  /=  %=
+        var Num = 1
+        Num += 2      // 3
+        Num *= 5      // 5
+
+
+        // 优先级 先*/后+- 先&&后||
+
+
+
+        // 流程控制
+        // 控制代码执行的顺序
+        // 顺序结构 分支结环结构
+        // 顺序结构: A→B  分支结构: A→条件→B或C  循环结构: A→条件→B或A1
+
+        // 分支流程控制 if语句 switch语句 
+        // if分支语句 
+
+        // if (条件表达式) {
+        // 执行语句
+        // }
+
+        // 执行思路: 如果 if ；里面的条件表达式结果为真 则执行大括号里的语句 
+        // 如果为假 则不执行大括号内语句 执行if语句后代码
+
+
+        // eg.
+        if (3 > 5) {
+            alert('撒谎莫洛托')
+        }
+        // 不产生任何效果 条件为假
+
+
+
+        // if else 双分支语句
+        // 结构: 条件成立 执行if里代码 否则执行else里代码
+
+        //  if (条件表达式) {
+        // [如果]条件成立执行的代码
+        // } else {
+        // [否则]执行的代码
+        //  }
+
+        // if和else语句最终只能有一个执行 2选1
+        // else 后面直接跟大括号
+
+
+        // 案例(一) 进入网吧
+        var age = prompt('请输入你的年龄')
+        if (age >= 18) {
+            alert('我想带你去网吧偷耳机')
+        } else {
+            alert('回家做作业去')
+        }
+
+
+
+        // 案例(二) 判断是否为闰年
+
+        // 要求: 接受用户输入的年份，如果是闰年就弹出闰年，如果不是弹出平年
+        // 原理: 能被4整除且不能被100整除的为闰年, 或者能被400整除（2004为闰年 1901不是闰年),
+        //       判断能否被整除  取余后值是否为0   
+
+        // 1. 弹出一个输入框prompt 用户输入年份
+        // 2. 通过if语句判断是否为闰年, 如果是闰年, 执行if后语句,如果不是闰年执行else后语句
+
+        var year2 = prompt('请输入一个年份, 我们将判断是否为闰年')
+        if (year2 % 4 == 0 && year2 % 100 != 0 || year2 % 400 == 0) {
+
+            // % 取余   year除4等于0同时year除100不等于0 或者 year除400等于0
+            alert('您输入的年份是闰年')
+        } else {
+            alert('您输入的年份是平年')
+        }
+
+
+
+        // if else if多分支语句
+        // 利用多个条件来选择不同的语句执行 得到不同的结果 多选1 的过程 
+
+        // if (条件表达式1) {
+        // 语句1;
+        // } else if (条件表达式2) {
+        // 语句2;
+        // } else if (条件表达式3) {
+        // 语句3;
+        // } else {
+        // 以上条件都不满足 执行最后的语句;
+        // }
+
+        // 多选1 最后只能有一个执行
+        // else if可以有多个
+
+
+
+        // 案例 判断成绩级别
+
+        // 弹出输入框输入的班级总人数
+        // 依次输入学生的成绩 （保存起来 score），此时我们需要用到
+        // for循环，弹出的次数和班级总人数相同，条件表达式 i <= num
+        // 进行业务处理：计算成绩。先求总成绩（sum），再求平均成绩（average）
+        // 弹出结果
+
+        var num = prompt('请输入班级总人数:') // num 为总的班级人数
+        var sum = 0 // 求和的变量
+        var average = 0 // 求平均值的变量
+        for (var i = 1; i <= num; i++) {
+            var score = prompt('请你输入第' + i + '个学生成绩')
+            sum = sum + parseFloat(score); // 将字符串型转化为数字型
+        }
+        average = sum / num
+
+        alert('班级总成绩是' + sum)
+        alert('班级平均分是：' + average)
+
+        if ('成绩' >= 90) {
+            alert('A')
+        } else if ('成绩' >= 80) {
+            alert('B')
+        } else if ('成绩' >= 70) {
+            alert('C')
+        } else if ('成绩' >= 60) {
+            alert('成绩' <= 59)
+            alert('E')
+        }
+
+
+
+        // 三元表达式
+        // 简化版的 if else, 三元运算符
+        // num++ 一元表达式   3 + 5 二元表达式    ? : 三元表达式
+
+        // 条件表达式 ? 表达式1 : 表达式2
+        // 执行思路: 如果条件表达式结果为真 则返回表达式1的值 如果条件表达式结果为假 则返回表达式2的值
+
+        var Num1 = 10
+        var result = num > 5 ? 'yes' : 'no'  // yes
+        console.log(result)
+
+
+
+        // switch语句
+        switch (2) {
+            case 1:
+                console.log('这是1')
+                break;
+            default:
+                console.log('无')
+        }
+
+
+
+        // 循环
+        // for循环
+        for (var i = 1; i < 10; i++) {
+            console.log('hello')
+        }
+
+        // while循环
+        var num = 1;
+        while (num < 10) {
+            console.log('hello');
+            num++;
+        }
+
+        // do while
+        do {
+            console.log('hello');
+            num++;
+        } while (i < 20)
+
+        // *********************************************************第二部分**************************************
+        // 数组（array） 
+        // 一组数据的集合 每个数据被称为元素 数组中可以存放任意种类的元素 数组即将一组数据统一存在同一个变量名下
+
+        // 把一系列数组全部存起来 并提供方便的访问方式 节省时间和效率 
+        // 创建方式：1.数组字面量方式（常用）  2.new Array()
+
+
+        var arr = [1, 2, 3]
+        // 使用数组字面量创建了一个空数组
+        // 在[]里可以存放任意种类的数据
+        // [1,2,3] 其中1，2，3称为数组元素 
+
+        console.log(arr[0])
+
+
+        var arr1 = new Array()
+        // 使用new Array（）创建了一个空的数组 
+
+        console.log(arr1)
+
+
+        var arr2 = new Array(2)
+        // Array不是创建了数组元素，仍然为空数组，但其中有两个空元素
+
+        console.log(arr2)
+
+
+        var arr3 = new Array(2, 3)
+        // 等价于[2,3] 这样写表示 里面有两个数组元素
+
+        console.log(arr3)
+
+
+
+        // 获取访问数组元素
+        // 在网页控制台中 Array()中找到数组元素
+
+        // 1. 索引(下标) : 用来访问数组元素的序号(数组下标 从0开始计数)
+        var arrdog = ['小白', '小黑', '大黄', '瑞奇']
+        // 其中 索引号: 0      1      2       3
+        // 数组可以通过索引来访问修改， "数组名[索引]"
+
+        console.log(arrdog)
+        console.log(arrdog[2])
+        // 若没有该元素，输出undefined
+
+
+
+        // 遍历数组
+        // 把数组中的每个元素从头到尾都访问一次
+        // 要获取所有元素，可通过for循环+遍历
+
+        var arrcolor = ['red', 'green', 'blue'];
+        for (var i = 0; i < 3; i++) {
+            console.log(arrcolor[i])
+        }
+        // 因为数组中索引号从0开始，所以for循环中i = 0, i < 索引号最大值
+        // 输出的时候 arr[i] i 计数器 索引号来用 
+
+
+
+        // 数组长度
+        // 数组名.length 可以访问数组元素的长度（数量 个数）
+        console.log(arrcolor.length)
+        for (var i = 0; i < arrcolor.length; i++) {
+            console.log(arrcolor[i])
+        }
+        // 数组的长度时元素的个数，从1开始，不要跟索引号混淆
+
+
+
+        // 案例（一） 求和，求平均值
+        var arrnumber = [1, 2, 3, 4]
+        var sum = 0
+        var average = 0
+        for (var i = 0; i < arrnumber.length; i++) {
+            sum += arr[i]   // 我们要加数组元素 arr[i]   不是计数器 i
+        }
+        console.log(sum)
+        average = sum / arrnumber.length
+        console.log(average)
+
+        // 可同时输出 console.log(sum, average);
+
+
+
+        // 案例 （二）求最大值 
+
+        // 原理: 1. 先声明一个数组
+        // 2. 声明一个空间变量MAX存放一个元素，默认最大值可以取数组中的第一个元素
+        // 3. 遍历这个数组，分别把每一个元素与这个元素比较，如果比这个数小则不发生改变，如果比这个数大，则取代这个数的位置
+        // 4. 就保证了MAX中的数永远是比较里的更大数
+        // 5. 最后输出MAX
+
+        var arrnum = [2, 6, 5, 12]
+        var max = arrnum[0]
+        for (var i = 0; i < arrnum.length; i++) {
+            if (arrnum[i] > max) {
+                max = arrnum[i]
+            }
+        }
+        console.log('该数组里的最大值是：' + max)
+
+
+
+        // 案例（三）数组转换为字符串
+        // 要求：将数组['red','green','blue','pink']转换为字符串，并用 | 或其他符号隔开
+        //       输出'red|green|blue|pink|'
+
+        // 原理: 1. 需要一个新变量用于存放转换完的字符串str
+        // 2. 遍历原来的数组，分别把里面的数据取出来，加到字符串里面吗
+        // 3. 同时在后面多加一个分隔符|
+
+        var arrcolor1 = ['red', 'green', 'blue', 'pink']
+        var str = ''
+        for (var i = 0; i < arrcolor1.length; i++) {
+            str += arrcolor1[i] + '|'
+        }
+        console.log(str)
+
+
+
+        // 数组新增元素
+        // 1. 可以通过修改length长度实现数据扩容 length属性可读写
+        var arrcolor = ['red', 'green', 'blue']
+        console.log(arrcolor.length)
+        arrcolor.length = 5  // 把数组长度修改为5
+
+        // 效果 empty*2  输出该元素
+        console.log(arrcolor[3])
+        // 效果 undefined
+
+
+        // 2. 通过修改数组索引号新增数组元素 若原位置有元素则直接替换该元素
+        var arrcolor = ['red', 'green', 'blue']
+        arrcolor[3] = 'pink'
+        console.log(arrcolor)
+
+
+        // 不要直接给数组赋值，否则里面的元素都没有了
+
+
+
+        // 案例(四)
+        // 新建一个数组，里面存放10个整数（1到10）
+
+        // 原理：
+        // 1. 使用循环追加数组
+        // 2. 声明一个空数组arrnum2
+        // 3. 循环中的计数器i可以作为数组元素存入
+        // 4. 由于数组索引号从0开始，因此计数器从0开始更合适，存入的数组要+1 
+
+        var arrnum2 = []
+        for (var i = 0; i < 10; i++) {
+            // arr i = 0 错误,不要直接给数组名赋值
+            arr[i] = i + 1   // 每次循环使arr[i] 等于循环后的值
+        }
+        console.log(arrnum2)
+
+
+
+        // 案例(五) 筛选数组
+        // 要求: 要将数组[2,0,6,1,52,0,25,7]中大于10的元素选出来，放入新数组
+
+        // 原理: 1. 声明一个新的数组用于存放新数据newArr
+        // 2. 遍历原来的旧数组，找出大于等于10的元素
+        // 3. 依次追加给新数组newArr
+
+
+        var newArr = []
+        var arrnum3 = [2, 0, 6, 1, 52, 0, 25, 7]
+
+
+        // 方法(1) 使用一个数组var j = 0; 
+        var j = 0
+
+        for (var i = 0; i < arrnum3.length; i++) {
+            if (arrnum3[i] > 10) {
+                // newArr = [i]; 错误 不应使数组名等于元素
+
+                // 新数组应该从0开始存，依次递增 另新建一个var j = [0];
+                newArr[j] = arrnum3[i]
+                j++
+            }
+        }
+        console.log(newArr)
+
+
+        // 方法(2) 改变newArr.length的值
+
+        // 刚开始时 newArr.length 为0
+        for (var i = 0; i < arrnum3.length; i++) {
+            if (arrnum3[i] > 10) {
+                newArr[newArr.length] = arrnum3[i]
+                // 即向newArr.length里存值 当存入第一个元素之后 进行第二轮遍历 此时newArr.length将不为0 
+            }
+        }
+
+
+
+        // 案例(六) 删除指定元素
+
+        // 原理: 1. 需要一个新数组用于存放筛选之后的数据
+        // 2. 遍历原来的旧数组，把不是指定元素的其他元素加入新数组(使用数组名+索引号)
+        // 3. 新数组里的个数，用length不断累加
+
+        // 删除[0]
+        var arrnum4 = [0, 21, 5, 6]
+        var newArr1 = []
+
+        for (var i = 0; i < arrnum4.length; i++) {
+            if (arrnum4[i] != 0) {
+                newArr1[newArr1.length] = arrnum4[i]
+            }
+        }
+        console.log(newArr1)
+
+
+
+        // 案例(七) 反转数组 将数组中所有元素倒序
+
+        var arrcolor2 = ['red', 'green', 'pink', 'purple']
+        // 要求：输出 ['purple','pink','green','red']
+
+        // 把旧数组中的最后一个元素(索引号3)取出来, 作为新数组中的第一个(索引号0)
+        // 旧数组3210 是长度(5) - 1         新数组0123
+
+        // 原理: 1. 声明一个新数组
+        // 2. 把旧数组中的最后一个元素(索引号3)取出来, arr.length - 1
+        // 3. 给新数组中的第一个(索引号0), newArr.length
+        // 4. 我们采取 递减的方式 i--
+
+        var newArr2 = []
+        for (var i = arrcolor2.length - 1; i >= 0; i--) {
+            //       最大的索引号            第一个
+            newArr2[newArr2.length] = arrcolor2[i]
+        }
+        console.log(newArr2)
+
+
+
+        // 案例(八) 数组排序 冒泡排序
+
+
+
+        // 检查是否为数组（两种方式）
+
+
+        // 方法(一) 
+        // instance of运算符  用来检测是否为数组
+        var Arr = []
+        console.log(Arr instanceof Array)   // 返回值为true或false
+
+
+        function reverse(Arr) {
+            if (Arr instanceof Array) {
+                var newArr = []
+                for (var i = Arr.length - 1; i >= 0; i++) {
+                    newArr[newArr.length] = arr[i]
+                }
+                return newArr
+            } else {
+                return '这个参数要求必须是数组格式 [1,2,3]'
+            }
+        }
+        // console.log(reverse([1, 2, 3]));
+        // console.log(reverse(1, 2, 3))
+
+        // 输出后则可查看是否为数组 若不是则报错
+
+
+        // 方法(二) Array.isArray(参数)
+        console.log(Array.isArray(arr))    // 输出为true false
+
+
+
+        // 添加或删除数组元素方法(4)
+
+        // push(参数1...) 在数组末尾添加元素
+        var arrnum5 = [1, 2, 3]
+        arrnum5.push(4)
+        console.log(arrnum5)
+        console.log(arrnum5.push(4))       // 输出返回值
+
+        // unshift(参数1...) 在数组开头添加
+        arrnum5.unshift('red')
+        console.log(arrnum5)
+        console.log(arrnum5.unshift('red'))
+
+        // pop() 删除最后一个元素
+        arrnum5.pop(arrnum5)               // 自动删除最后一个 
+        console.log(arrnum5)
+        console.log(arrnum5.pop())         // 输出返回值
+
+        // shift() 删除第一个元素
+        arrnum5.shift()
+        console.log(arrnum5)
+        console.log(arrnum5.shift())
+
+
+
+        // 筛选数组
+        // 有一个包含工资的数组[1500，1200，2000，2100，1800]，
+        // 要求把数组中工资超过2000的删除，剩余的放到新数组中
+        var arrSalary = [1500, 1200, 2000, 2100, 1800]
+        var newArrSalary = []
+        for (var i = [0]; i < arrSalary.length; i++) {
+            if (arrSalary[i] < 2000) {
+                // newArrSalary[newArrSalary.length] = arr[i];
+                newArrSalary.push(arrSalary[i])
+            }
+        }
+        console.log(newArrSalary)
+
+
+
+        // 数组（array） 
+        // 一组数据的集合 每个数据被称为元素 数组中可以存放任意种类的元素 数组即将一组数据统一存在同一个变量名下
+
+        // 把一系列数组全部存起来 并提供方便的访问方式 节省时间和效率 
+        // 创建方式：1.数组字面量方式（常用）  2.new Array()
+
+
+        var arr = [1, 2, 3]
+        // 使用数组字面量创建了一个空数组
+        // 在[]里可以存放任意种类的数据
+        // [1,2,3] 其中1，2，3称为数组元素 
+
+        console.log(arr[0])
+
+
+        var arr1 = new Array()
+        // 使用new Array（）创建了一个空的数组 
+
+        console.log(arr1)
+
+
+        var arr2 = new Array(2)
+        // Array不是创建了数组元素，仍然为空数组，但其中有两个空元素
+
+        console.log(arr2)
+
+
+        var arr3 = new Array(2, 3)
+        // 等价于[2,3] 这样写表示 里面有两个数组元素
+
+        console.log(arr3)
+
+
+
+        // 获取访问数组元素
+        // 在网页控制台中 Array()中找到数组元素
+
+        // 1. 索引(下标) : 用来访问数组元素的序号(数组下标 从0开始计数)
+        var arrdog = ['小白', '小黑', '大黄', '瑞奇']
+        // 其中 索引号: 0      1      2       3
+        // 数组可以通过索引来访问修改， "数组名[索引]"
+
+        console.log(arrdog)
+        console.log(arrdog[2])
+        // 若没有该元素，输出undefined
+
+
+
+        // 遍历数组
+        // 把数组中的每个元素从头到尾都访问一次
+        // 要获取所有元素，可通过for循环+遍历
+
+        var arrcolor = ['red', 'green', 'blue'];
+        for (var i = 0; i < 3; i++) {
+            console.log(arrcolor[i])
+        }
+        // 因为数组中索引号从0开始，所以for循环中i = 0, i < 索引号最大值
+        // 输出的时候 arr[i] i 计数器 索引号来用 
+
+
+
+        // 数组长度
+        // 数组名.length 可以访问数组元素的长度（数量 个数）
+        console.log(arrcolor.length)
+        for (var i = 0; i < arrcolor.length; i++) {
+            console.log(arrcolor[i])
+        }
+        // 数组的长度时元素的个数，从1开始，不要跟索引号混淆
+
+
+
+        // 案例（一） 求和，求平均值
+        var arrnumber = [1, 2, 3, 4]
+        var sum = 0
+        var average = 0
+        for (var i = 0; i < arrnumber.length; i++) {
+            sum += arr[i]   // 我们要加数组元素 arr[i]   不是计数器 i
+        }
+        console.log(sum)
+        average = sum / arrnumber.length
+        console.log(average)
+
+        // 可同时输出 console.log(sum, average);
+
+
+
+        // 案例 （二）求最大值 
+
+        // 原理: 1. 先声明一个数组
+        // 2. 声明一个空间变量MAX存放一个元素，默认最大值可以取数组中的第一个元素
+        // 3. 遍历这个数组，分别把每一个元素与这个元素比较，如果比这个数小则不发生改变，如果比这个数大，则取代这个数的位置
+        // 4. 就保证了MAX中的数永远是比较里的更大数
+        // 5. 最后输出MAX
+
+        var arrnum = [2, 6, 5, 12]
+        var max = arrnum[0]
+        for (var i = 0; i < arrnum.length; i++) {
+            if (arrnum[i] > max) {
+                max = arrnum[i]
+            }
+        }
+        console.log('该数组里的最大值是：' + max)
+
+
+
+        // 案例（三）数组转换为字符串
+        // 要求：将数组['red','green','blue','pink']转换为字符串，并用 | 或其他符号隔开
+        //       输出'red|green|blue|pink|'
+
+        // 原理: 1. 需要一个新变量用于存放转换完的字符串str
+        // 2. 遍历原来的数组，分别把里面的数据取出来，加到字符串里面吗
+        // 3. 同时在后面多加一个分隔符|
+
+        var arrcolor1 = ['red', 'green', 'blue', 'pink']
+        var str = ''
+        for (var i = 0; i < arrcolor1.length; i++) {
+            str += arrcolor1[i] + '|'
+        }
+        console.log(str)
+
+
+
+        // 数组新增元素
+        // 1. 可以通过修改length长度实现数据扩容 length属性可读写
+        var arrcolor = ['red', 'green', 'blue']
+        console.log(arrcolor.length)
+        arrcolor.length = 5  // 把数组长度修改为5
+
+        // 效果 empty*2  输出该元素
+        console.log(arrcolor[3])
+        // 效果 undefined
+
+
+        // 2. 通过修改数组索引号新增数组元素 若原位置有元素则直接替换该元素
+        var arrcolor = ['red', 'green', 'blue']
+        arrcolor[3] = 'pink'
+        console.log(arrcolor)
+
+
+        // 不要直接给数组赋值，否则里面的元素都没有了
+
+
+
+        // 案例(四)
+        // 新建一个数组，里面存放10个整数（1到10）
+
+        // 原理：
+        // 1. 使用循环追加数组
+        // 2. 声明一个空数组arrnum2
+        // 3. 循环中的计数器i可以作为数组元素存入
+        // 4. 由于数组索引号从0开始，因此计数器从0开始更合适，存入的数组要+1 
+
+        var arrnum2 = []
+        for (var i = 0; i < 10; i++) {
+            // arr i = 0 错误,不要直接给数组名赋值
+            arr[i] = i + 1   // 每次循环使arr[i] 等于循环后的值
+        }
+        console.log(arrnum2)
+
+
+
+        // 案例(五) 筛选数组
+        // 要求: 要将数组[2,0,6,1,52,0,25,7]中大于10的元素选出来，放入新数组
+
+        // 原理: 1. 声明一个新的数组用于存放新数据newArr
+        // 2. 遍历原来的旧数组，找出大于等于10的元素
+        // 3. 依次追加给新数组newArr
+
+
+        var newArr = []
+        var arrnum3 = [2, 0, 6, 1, 52, 0, 25, 7]
+
+
+        // 方法(1) 使用一个数组var j = 0; 
+        var j = 0
+
+        for (var i = 0; i < arrnum3.length; i++) {
+            if (arrnum3[i] > 10) {
+                // newArr = [i]; 错误 不应使数组名等于元素
+
+                // 新数组应该从0开始存，依次递增 另新建一个var j = [0];
+                newArr[j] = arrnum3[i]
+                j++
+            }
+        }
+        console.log(newArr)
+
+
+        // 方法(2) 改变newArr.length的值
+
+        // 刚开始时 newArr.length 为0
+        for (var i = 0; i < arrnum3.length; i++) {
+            if (arrnum3[i] > 10) {
+                newArr[newArr.length] = arrnum3[i]
+                // 即向newArr.length里存值 当存入第一个元素之后 进行第二轮遍历 此时newArr.length将不为0 
+            }
+        }
+
+
+
+        // 案例(六) 删除指定元素
+
+        // 原理: 1. 需要一个新数组用于存放筛选之后的数据
+        // 2. 遍历原来的旧数组，把不是指定元素的其他元素加入新数组(使用数组名+索引号)
+        // 3. 新数组里的个数，用length不断累加
+
+        // 删除[0]
+        var arrnum4 = [0, 21, 5, 6]
+        var newArr1 = []
+
+        for (var i = 0; i < arrnum4.length; i++) {
+            if (arrnum4[i] != 0) {
+                newArr1[newArr1.length] = arrnum4[i]
+            }
+        }
+        console.log(newArr1)
+
+
+
+        // 案例(七) 反转数组 将数组中所有元素倒序
+
+        var arrcolor2 = ['red', 'green', 'pink', 'purple']
+        // 要求：输出 ['purple','pink','green','red']
+
+        // 把旧数组中的最后一个元素(索引号3)取出来, 作为新数组中的第一个(索引号0)
+        // 旧数组3210 是长度(5) - 1         新数组0123
+
+        // 原理: 1. 声明一个新数组
+        // 2. 把旧数组中的最后一个元素(索引号3)取出来, arr.length - 1
+        // 3. 给新数组中的第一个(索引号0), newArr.length
+        // 4. 我们采取 递减的方式 i--
+
+        var newArr2 = []
+        for (var i = arrcolor2.length - 1; i >= 0; i--) {
+            //       最大的索引号            第一个
+            newArr2[newArr2.length] = arrcolor2[i]
+        }
+        console.log(newArr2)
+
+
+
+        // 案例(八) 数组排序 冒泡排序
+
+
+
+        // 检查是否为数组（两种方式）
+
+
+        // 方法(一) 
+        // instance of运算符  用来检测是否为数组
+        var Arr = []
+        console.log(Arr instanceof Array)   // 返回值为true或false
+
+
+        function reverse(Arr) {
+            if (Arr instanceof Array) {
+                var newArr = []
+                for (var i = Arr.length - 1; i >= 0; i++) {
+                    newArr[newArr.length] = arr[i]
+                }
+                return newArr
+            } else {
+                return '这个参数要求必须是数组格式 [1,2,3]'
+            }
+        }
+        // console.log(reverse([1, 2, 3]));
+        // console.log(reverse(1, 2, 3))
+
+        // 输出后则可查看是否为数组 若不是则报错
+
+
+        // 方法(二) Array.isArray(参数)
+        console.log(Array.isArray(arr))    // 输出为true false
+
+
+
+        // 添加或删除数组元素方法(4)
+
+        // push(参数1...) 在数组末尾添加元素
+        var arrnum5 = [1, 2, 3]
+        arrnum5.push(4)
+        console.log(arrnum5)
+        console.log(arrnum5.push(4))       // 输出返回值
+
+        // unshift(参数1...) 在数组开头添加
+        arrnum5.unshift('red')
+        console.log(arrnum5)
+        console.log(arrnum5.unshift('red'))
+
+        // pop() 删除最后一个元素
+        arrnum5.pop(arrnum5)               // 自动删除最后一个 
+        console.log(arrnum5)
+        console.log(arrnum5.pop())         // 输出返回值
+
+        // shift() 删除第一个元素
+        arrnum5.shift()
+        console.log(arrnum5)
+        console.log(arrnum5.shift())
+
+
+
+        // 筛选数组
+        // 有一个包含工资的数组[1500，1200，2000，2100，1800]，
+        // 要求把数组中工资超过2000的删除，剩余的放到新数组中
+        var arrSalary = [1500, 1200, 2000, 2100, 1800]
+        var newArrSalary = []
+        for (var i = [0]; i < arrSalary.length; i++) {
+            if (arrSalary[i] < 2000) {
+                // newArrSalary[newArrSalary.length] = arr[i];
+                newArrSalary.push(arrSalary[i])
+            }
+        }
+        console.log(newArrSalary)
+
+
+
+        // 数组排序
+        // 从小到大 eg. 5,8,4,1,7 -> 1,4,5,7,8
+        // 方法(一): reverse() 颠倒数组中元素的顺序 改变原来的数组
+        //     (二): sort()    直接排序 改变原来的数组
+
+        var arrColor = ['pink', 'red', 'blue']
+        arrColor.reverse()
+        console.log(arrColor)
+
+        var arrNumber1 = [3, 4, 7, 1]
+        arrNumber1.sort()
+        console.log(arrNumber1)
+        // 此方法只适用个位数 两位数及以上会发生错误
+
+
+
+        // 完美写法 固定格式
+        var arrNumber2 = [13, 4, 77, 1, 7];
+        arrNumber2.sort(function (a, b) {
+            return a - b // 升序
+            return b - a // 降序
+        });
+
+        console.log(arrNumber2)
+
+
+        // 获取数组索引号的方法
+        // 方法(一) indexOf() 查找给定元素的第一个索引，若存在返回索引号，若不存在返回-1  若有相同元素只返回第一个索引号
+        // 方法(二) lastIndexOf() 查找给定元素的最后一个索引，若存在返回索引号，若不存在返回-1 若有相同元素只返回最后一个索引号 
+
+        var arrColor1 = ['red', 'green', 'blue', 'pink']
+        console.log(arrColor1.indexOf('red'))       // 输出结果为0
+
+
+
+        // 案例: 数组去重 (重点) (面试常问)
+        // 要求: 有一个数组['c','a','z','a','x','a','x','c','b']; 要求去掉重复元素
+        // 原理: 把旧数组中不同元素选中，放到新数组，重复元素只保留一个，放到新数组查重
+
+        // 做法: 遍历旧数组，拿着旧数组元素去查询新数组，如果该元素在新数组中有则不添加
+        // 利用indexOf (新数组), 如果返回-1则说明新数组无该元素
+
+        // 定义一个独一无二的去重数组
+        function unique(arrOne) {
+            var newArr = []                              // 定义一个新数组
+            for (var i = 0; i < arrOne.length; i++) {
+                if (newArr.indexOf(arrOne[i]) === -1) {
+                    newArr.push(arrOne[i])               // 如果返回值-1，就存入新数组
+                }
+            }
+
+            return newArr;
+        }
+        var demo = unique(['c', 'a', 'z', 'a', 'x', 'a', 'x', 'c', 'b'])
+        console.log(demo)   // 输出结果 c a z x b
+
+        // 再来一次
+        var demo = ['blue', 'green', 'blue']
+        console.log(demo)   // 输出结果 blue green
+
+
+
+        // 数组转化为字符串
+        // 方法(一) toString() 把数组转换成字符串，逗号分隔，返回一个字符串
+        // 方法(二) join(分隔符) 把每一个元素转换成一个字符串 可定义分隔方式
+
+        var arrnumber3 = [1, 2, 3]
+        console.log(arrnumber3.toString())   // 1,2,3
+        console.log(arrnumber3.join("|"))    // 1|2|3
+    </script>
+
+</head>
+
+<body>
+    <!-- JS：javascript语法 页面文档对象模型 浏览器对象模型 -->
+
+    <!-- JS基础： ECMASScript分为 JavaScript网景公司 + Jscript微软公司 -->
+    <!-- ECMASScript规定了JavaScript的编程语法和基础核心 -->
+
+    <!-- DOM 文档对象模型：语言的编程接口 对页面元素进行操作 -->
+
+    <!-- BOM 浏览器对象模型：独立于内容 与浏览器窗口进行互动 -->
+
+
+
+
+    <!-- JS书写位置：行内 内嵌 外部 -->
+    <!-- 行内：body 内嵌：head 外部 -->
+
+    <!-- 行内式的JS -->
+    <input type="button" value="唐伯虎" onclick="alert('秋香姐')">
+    <!-- value为按钮 onclick为弹窗内容 -->
+    <!-- 当点击唐伯虎时 弹出窗口“秋香姐” 秋香姐汉字用单引号‘’-->
+
+    <!-- 外部的JS 在外部新建一个文件 JS文件后缀 .js 直接输入alert(''); -->
+    <!-- 然后再head 输入一个<script src="my.js"></script> -->
+    <!-- 两个script中间 不能写代码 -->
+
+
+
+    <!-- JS注释方法 -->
+    <!-- 1.单行注释 // (script中)快捷键 ctrl+/ -->
+    <!-- 2.多行注释 /*/  快捷键 shift alt a -->
+
+
+
+    <!-- JS输出语句 -->
+    <!-- alert(msg) -->
+    <!-- head中 -->
+    <!-- 浏览器弹出警示框 -->
+
+    <console class="log"></console>
+    <!-- 浏览器控制台打印输出信息 -->
+
+    <!-- prompt(info) -->
+    <!-- head中 -->
+    <!-- 浏览器弹出输入框 用户可以输入 -->
+
+
+
+    <!-- 变量 -->
+    <!-- 在内存中申请一块用来存放数据的空间 -->
+    <!-- 装东西的盒子 容器 -->
+
+    <!-- 声明+赋值 -->
+
+    <!-- 声明变量 关键字var -->
+    <!-- var age; 声明一个名称为age的变量 -->
+    <!-- 赋值 把值存入变量中 -->
+    <!-- age = 10; 给age这个变量赋值为10 -->
+    <!-- 输出变量 console.log -->
+
+
+
+    <!-- 更新变量 -->
+    <!-- 变量被重新赋值后 原有的值就会被覆盖 变量以最后一次赋值为准 -->
+
+
+
+    <!-- 变量命名规范 -->
+    <!-- 字母数字 / & $ 不能以数字开头 不能为关键字 首字母小写中间单词首字母大写 -->

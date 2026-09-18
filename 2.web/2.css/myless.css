@@ -1,0 +1,17 @@
+body {
+  background-color: pink;
+}
+div {
+  color: pink;
+}
+.head a {
+  color: #000;
+}
+.head a:hover {
+  color: aliceblue;
+}
+div {
+  width: 200px;
+  height: 200px;
+  border: 10px solid #444444;
+}

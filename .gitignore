@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+
+# Build outputs
+build/
+dist/
+*.exe
+*.spec
+
+# IDE
+.idea/
+.vscode/
+.vs/
+*.iml
+*.iws
+*.ipr
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Large files (>100MB, cannot push to GitHub directly)
+# Note: brackets in filename need wildcard matching
+1.c/文档文件/*.pdf

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算学生成绩等级</title>
+    <script>
+        // 弹出输入框输入的班级总人数
+        // 依次输入学生的成绩 （保存起来 score），此时我们需要用到
+        // for循环，弹出的次数和班级总人数相同，条件表达式 i <= num
+        // 进行业务处理：计算成绩。先求总成绩（sum），再求平均成绩（average）
+        // 弹出结果
+
+
+        var num = prompt('请输入班级总人数:'); // num 为总的班级人数
+        var sum = 0; // 求和的变量
+        var average = 0; // 求平均值的变量
+        for (var i = 1; i <= num; i++) {
+            var score = prompt('请你输入第' + i + '个学生成绩');
+            sum = sum + parseFloat(score); // 将字符串型转化为数字型
+        }
+        average = sum / num;
+
+        alert('班级总成绩是' + sum);
+        alert('班级平均分是：' + average);
+
+        if ('成绩' >= 90) {
+            alert('A');
+        } else if ('成绩' >= 80) {
+            alert('B');
+        } else if ('成绩' >= 70) {
+            alert('C');
+        } else if ('成绩' >= 60) {
+            alert('成绩' <= 59)
+            alert('E');
+
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

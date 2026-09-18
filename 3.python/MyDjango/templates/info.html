@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>信息</title>
+
+</head>
+<body>
+    <p>{{ username }}</p>
+    <p>图书名称:{{book.name}}</p>
+    <p>下标为0的图书名称{{books.0}}</p>
+    <p>姓名为:{{Person.name}}</p>
+
+    <!-- 8.if -->
+    {% if age > 18 %}
+        <p>您已满18岁,可以进入网吧!</p>
+    {% elif age == 18 %}
+        <!--  == 必须有空格  -->
+        <p>您刚满18岁,还需要再观察一下!</p>
+    {% else %}
+        <p>您未满18岁,禁止进入网吧!</p>
+    {% endif %}
+
+    <!-- for -->
+    <div>
+        {% for key, value in person.items %}
+            <p>{{ key }}:{{ value }}</p >
+        {% empty %}
+            <p>暂时还没有人</p>
+        {% endfor %}
+    </div>
+
+    <!-- with -->
+    {% with book1=books.1 %}
+        <p>{{book1.name}}</p>
+    {% endwith %}
+
+    <!-- url -->
+    <a href="{% url 'baidu' %}">百度</a>
+
+    <!-- 10.include -->
+    {% include "article.html" %}
+
+    <!-- 11.static static.html -->
+
+</body>
+</html>

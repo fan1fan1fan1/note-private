@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 函数
+        // 声明函数
+        function name() {
+            console.log('hello');
+        }
+
+        // 调用函数
+        name();
+
+        // 带参
+        function name1(aru) {
+            console.log('aru');
+        }
+        name1('hello');
+
+        // 带返回值函数
+        function name2() {
+            return 666;
+        }
+        name2();
+
+
+
+        // arguments
+        /* 不确定参数 argument是当前函数的内置对象 存储了传递的所有实参
+            展示输出形式为伪数组 可以遍历 有length属性 按照索引存储多个数据
+
+            伪数组: 1.有length
+                    2.有索引
+                    3.没有push pop 等
+
+            只有函数才有argument
+        */
+        function name3() {
+            console.log(aruments);
+            console.log(arguments.length);
+            console.log(arguments[0]);
+
+            for (var i = 0; i < arguments.length; i++) {
+                console.log(arguments[i]);
+            }
+        }
+        name3(1, 2, 3); // 输出[1,2,3] 
+
+        // 函数的声明 以上都属于命名函数
+        // 函数声明第二种方式 函数表达式(匿名函数) 用变量名表示函数名 直接使用
+        var name4 = function () {
+            console.log('1');
+        };
+
+
+
+        // 作用域
+        /* 函数能作用其效果的范围 
+            全局作用域 整个script标签 和 js文件 全局变量
+            局部作用域 函数内部                 局部变量
+
+            作用域链 script里写function里面又写function 
+                    内部函数可以访问外部函数的变量作用域 如果有多个作用域有同个变量 就近原则选择变量
+        */
+
+
+
+        // 预解析
+        /* JavaScript代码是由浏览器中的JavaScript解析器来执行的。
+            JavaScript解析器在运行JavaScript代码的时候分为两步：预解析和代码执行。
+
+            预解析 分为 变量预解析(变量提升) 和 函数预解析(函数提升)
+                    把变量声明在当前作用域的最前(提升) 不赋值
+                    把函数名声明在当前作用域的最前(提升) 不调用        
+        */
+
+        // 变量预解析
+        num = 1;
+        console.log(num);
+        // 如果反过来写会报错 有预解析 但是没赋值没初始化
+
+
+        // 函数预解析 可以提升
+        fn();
+        function fn() {
+            console.log('hello');
+        }
+
+
+        // 不能提升
+        var fun = function () {
+            console.log('hello');
+        }
+        fn1();
+        // 反过来写会报错 当作变量声明函数时 属于变量 没初始化 相当于没有函数主体内容
+
+
+
+        // 对象
+        /* 一定是特指的某一个 具体的 不能是一群泛指
+
+            创建对象: 1.利用字面量创建对象
+                     2.利用 new Object创建对象
+                     3.利用构造函数创建对象
+        */
+
+        // 1.利用字面量创建对象   {}
+        var obj = {}; // 空对象
+
+        var obj1 = {
+            uname: 'a',   // 键值对
+            age: 18,
+            sex: '男',
+            sayHi: function () {
+                console.log('hi');
+            }
+        }
+
+        console.log(obj.age());
+        console.log(obj['age']);
+        obj.sayHi();
+
+
+
+        // 2.利用 new Object创建对象
+        var obj2 = new Object();
+        obj2.uname = 'a';
+        obj2.age = 18;
+        obj2.sex = '男';
+        obj2.sayHi = function () {
+            console.log('hi');
+        }
+
+        console.log(obj2.age());
+        console.log(obj2['age']);
+        obj2.sayHi();
+
+
+
+        // 3.利用构造函数创建对象
+        /* 构造函数：是一种特殊的函数，主要用来初始化对象，即为对象成员变量赋初始值，它总与new运算符一起使用。
+            我们可以把对象中一些公共的属性和方法抽取出来，然后封装到这个函数里面。
+
+            首字母大写
+            构造函数不需要return
+            输出时必须写new
+            属性里一定要写this
+        */
+        function Obj3(uname, age, sex) {
+            this.uname = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        new Obj3('liu', 18, 'nan');
+
+
+
+        // 遍历对象  for ../. in ... 习惯写k或key
+        for (var k in obj) {
+            console.log(k);
+            console.log(obj[k]);
+        }
+
+
+
+        // 内置对象
+        /* JavaScript中的对象分为3种：自定义对象、内置对象、浏览器对象
+            前面两种对象是JS基础 内容，属于 ECMAScript； 第三个浏览器对象属于我们JS独有的，我们JS API讲解
+            内置对象就是指JS语言自带的一些对象，这些对象供开发者使用，并提供了一些常用的或是最基本而必要的功能（属性和方法）
+            内置对象最大的优点就是帮助我们快速开发
+            JavaScript提供了多个内置对象：Math、Date、Array、String等
+
+            1.查文档
+            2.math对象
+            3.日期对象
+            4.数组对象
+            5.字符串对象
+
+            学习一个内置对象的使用，只要学会其常用成员的使用即可，我们可以通过查文档学习，可以通过MDN/W3C来查询。
+            Mozilla开发者网络(MDN)提供了有关开放网络技术(OpenWeb)的信息，包括HTML、CSS和万维网及
+            HTML5应用的API。
+            MDN:https://developer.mozilla.org/zh-CN/
+
+            如何学习对象中的方法
+                1. 查阅该方法的功能
+                2.查看里面参数的意义和类型
+                3.查看返回值的意义和类型
+                4. 通过demo进行测试
+        */
+
+        // Math
+        /* Math数学对象 不是一个构造函数，所以我们不需要new 来调用 而是直接使用里面的属性和方法即可
+            Math 对象不是构造函数，它具有数学常数和函数的属性和方法。跟数学相关的运算（求绝对值，取整、最大值
+            等）可以使用Math中的成员。
+
+            Math.PI         //圆周率
+            Math.floor()    //向下取整
+            Math.ceil()     //向上取整
+            Math.round()    // 四舍五入版 就近取整    注意-3.5结果是-3
+            Math.abs()      //绝对值
+            Math.max()     /Math.min()//求最大和最小值
+        */
+        console.log(Math.PI);   //一个属性 圆周率
+        console.log(Math.max(1, 99, 3));    // 99
+        console.log(Math.max(-1, -10));  // -1
+        console.log(Math.max(1, 99, 'pink老师')); // NaN
+        console.log(Math.max()); // -Infinity
+
+        // 1.Math对象随机数方法    random()返回一个随机的小数  0 =<×< 1
+        // 2. 这个方法里面不跟参数
+        // 3.代码验证
+        console.log(Math.random());
+        // 4.我们想要得到两个数之间的随机整数并且 包含这2个整数
+        // Math.floor(Math.random() * (max - min + 1)) + min;
+        function getRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        console.log(getRandom(1, 10));
+        // 5. 随机点名
+        var arr = ['张三', '张三丰', '张三疯子', '李四', '李思思', 'pink老师'];
+        // console.log(arr[0]);
+        console.log(arr[getRandom(0, arr.length - 1)]);
+
+        // Date
+        // Date()日期对象 是一个构造函数 必须使用new 来调用创建我们的日期对象
+        var arr = new Array();// 创建一个数组对象
+        var obj = new Object();// 创建了一个对象实例
+        //1. 使用Date 如果没有参数 返回当前系统的当前时间
+        var date = new Date();
+        console.log(date);
+        // 2. 参数常用的写法 数字型 2019，10，01 或者是 字符串型 '2019-10-1 8:8:8'
+        var date1 = new Date(2019, 10, 1);
+        console.log(date1);// 返回的是 11月 不是 10月
+        var date2 = new Date('2019-10-1 8:8:8');
+        console.log(date2);
+
+        /* 日期格式化
+            getFullYear() 获取当年          dObj.getFullYear()
+            getMonth()    获取当月 (0-11)   dObj.getMonth()
+            getDate()     获取当天日期      dObj.getDate()
+            getDay()      获取星期几        dObj.getDay()
+            getHours()    获取当前小时      dObj.getHours()
+            getMinutes()  获取当前分钟      dObj.getMinutes()
+            getSeconds()  获取当前秒钟      dObj.getSeconds()
+        */
+
+
+
+        // 格式化日期 年月日
+        var date = new Date();
+        console.log(date.getFullYear()); // 返回当前日期的年 2019
+        console.log(date.getMonth() + 1);// 月份 返回的月份小1个月
+        console.log(date.getDate());// 返回的是 几号
+        console.log(date.getDay());// 3 周一返回的是 1 周六返回的是 6 但是 周日返回的是 0
+        // 我们写一个 2019年 5月 1日 星期三
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var dates = date.getDate();
+        var arr = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+        var day = date.getDay();
+        console.log('今天是：' + year + '年' + month + '月' + dates + '日 ' + arr[day]);
+
+
+
+        // 获得Date总的毫秒数（时间戳） 不是当前时间的毫秒数 而是距离1970年1月1号过了多少毫秒数
+        // 1. 通过 value0f() getTime()
+        var date = new Date();
+        console.log(date.valueOf());// 就是 我们现在时间 距离1970.1.1 总的毫秒数
+        console.log(date.getTime());
+        //2. 简单的写法（最常用的写法）
+        var date1 = +new Date(); // +new Date()
+        返回的就是总的毫秒数
+        console.log(date1);
+        // 3. H5 新增的 获得总的毫秒数
+        console.log(Date.now());
+
+
+        // js = ECMAScript + DOM + BOM
+        // ECMAScript ↑
+
+
+
+        // DOM + BOM ↓
+        // web APIs
+        /* API 软件已有函数
+            Web API是浏览器提供的一套操作浏览器功能和页面元素的API(BOM和DOM)。
+            现阶段我们主要针对于浏览器讲解常用的API，主要针对浏览器做交互效果。
+            比如我们想要浏览器弹出一个警示框，直接使用alert(‘弹出’)
+            
+            MDN详细API:https://developer.mozilla.orq/zh-CN/docs/Web/API
+        */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+    <script src="jquery.min.js"></script>
+</head>
+
+<body>
+    <!-- 容器 -->
+    <ul id="list"></ul>
+    <script>
+        const persons = [   // 数据
+            { id: 1001, name: "zhan", age: 18 },
+            { id: 1002, name: "li", age: 19 },
+            { id: 1003, name: "wang", age: 20 }
+        ]
+
+        // 1.定义html字符串
+        let htmStr = ''
+
+        // 2.遍历数据拼接html字符串
+        presons.forEach(p => {
+            htmlStr += <li>${p.id} - ${p.name} - ${p.age}</li>
+        });
+
+        // 3.获取list元素
+        let list = document.getElementById('list')
+
+        // 4.修改内容
+        list.innerHTML = htmlStr
+    </script>
+</body>
+
+</html>

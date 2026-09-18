@@ -1,0 +1,1 @@
+alert('static的js文件')

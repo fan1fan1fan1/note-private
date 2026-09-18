@@ -1,0 +1,2299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        // 基本包装类型 
+        // DOM 
+        // Document Object Model 文本对象模型 是W3C组织推荐的处理可扩展标记语言(html或xml)的标准编程接口
+        // 处理前端语言的接口 用于改变网页内容，结构，样式  用于操作元素
+        
+        // DOM树 文档->根元素<html> -> <head> -> <title> -> 文档标题 
+        //       document          -> <body> -> <a>     -> 我的链接
+        //                                   -> <h1>    -> 我的标题
+    </script>
+
+    <style>
+        /* 案例 隐藏密码改显示密码 */
+        /* css */
+        .box {
+            position: relative;
+            width: 400px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+        }
+
+        .box input {
+            width: 370px;
+            height: 30px;
+            border: 0;
+            outline: none;
+        }
+
+        .box img {
+            position: absolute;
+            top: 5px;
+            right: 12px;
+            width: 30px;
+        }
+
+        /* 改变元素颜色 */
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+
+        .change{
+            background-color: pink;
+        }
+
+
+
+        /* 动画 */
+        div{
+            position: absolute;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+
+
+
+        /* jquery修改样式 类方法 */
+        .current{
+            background-color: red;
+        }
+
+        /* jquery事件处理 */
+        .current{
+            background-color: blue;
+        }
+    </style>
+
+    <!-- animate引入 必须写在index.js的前面 -->
+    <script src="js/animate.js"></script>
+    <!-- 轮播图引入 -->
+    <script src="js/index.js"></script>
+
+    <!-- swiper 网络端 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <!-- swiper 本地 -->
+    <link rel="stylesheet" href="./swiper/swiper.min.css">
+
+    <!-- 引入jquery -->
+    <script src="jquery.min.js"></script>
+</head>
+
+<body>
+    <!-- ****************************************************第一部分************************************************************** -->
+
+    <!-- 获取网页元素的方法 
+            1.根据ID获取 
+            2.根据标签名获取 
+            3. 通过HTML5新增的方法获取
+            4. 特殊元素获取 -->
+
+    <!-- 1. 使用getElementById() 返回匹配特定的ID的DOM Element对象 若不存在返回NULL -->
+    <!-- 其中()里必须是字符串且大小写敏感 -->
+    <div id="time">2024-11-11</div>
+    <!-- 网页中先有标签 从上向下加载 此时script写在body里 -->
+    <!-- 返回值是element对象 不是元素  -->
+    <script>
+        // get获得 element元素 by通过 驼峰命名法
+
+        var timer = document.getElementById('time')
+        console.log(timer)
+        // 输出结果 <div id="time"> 2024-11-11 </div>
+
+        console.dir(timer)
+        // 打印我们返回的元素对象，查看返回值属性，方法
+    </script>
+
+
+
+    <!-- 2. getElementsByTagName() 获取对象集合 -->
+    <ul>
+        <li>知否知否应是等你好久1</li>
+        <li>知否知否应是等你好久2</li>
+        <li>知否知否应是等你好久3</li>
+        <li>知否知否应是等你好久4</li>
+        <li>知否知否应是等你好久5</li>
+    </ul>
+    <ol>
+        <li>生僻字1</li>
+        <li>生僻字2</li>
+        <li>生僻字3</li>
+        <li>生僻字4</li>
+        <li>生僻字5</li>
+    </ol>
+    <script>
+        var lis = document.getElementsByTagName('li')
+        console.log(lis)
+        // 返回值得到的是元素对象的集合，以伪数组的形式存储
+
+        // 打印元素
+        console.log(lis[0])
+
+        // 想要依次打印里面的元素对象我们可以采用遍历的方式
+        for(var i = 0; i < lis.length; i++) {
+            console.log(lis[i])
+        }
+
+        // 使用遍历得到的对象是动态的
+        // 如果页面中集合只有一个元素 <li> 返回值仍是伪数组
+        // 若返回值不存在，输出结果: HTMLCollection[] undefined
+        
+        // 要求: 只打印<ol> 里的li 不打印ul里的
+        // 使用 element.getElementsByTagName(标签名);
+        // 其中父元素必须是单个对象，必需指明是哪一个对象，获取的时候不包括父元素自己
+        var ol = document.getElementsByTagName('li')  // [li]
+        console.log(ol[0].getElementsByTagName('li'))
+        // 一定要指明ol对象 即ol[0]
+    </script>
+
+
+
+    <!-- 3. 当考虑其他浏览器及兼容问题时，使用HTML5新增方法 -->
+    <!-- (1) 通过类名 document.getElementsByClassName('类名'); 
+        (2) document.querySelector('选择器'); 
+        (3) document.querySelectorAll('选择器'); -->
+    <div class="box">盒子1</div>
+    <div class="box">盒子2</div>
+    <div id="nav"></div>
+    <ul>
+        <li>首页</li>
+        <li>产品</li>
+    </ul>
+    <script>
+        // 通过类名
+        var boxs = document.getElementsByClassName('box')
+        console.log(boxs)
+
+        // 通过选择器 根据指定选择器返回第一个元素对象
+        var firstBox = document.querySelector('.box')  // 类选择器
+        console.log(firstBox)
+
+        var nav = document.querySelector('#nax')       // id选择器
+        console.log('nav')
+
+        var li = document.querySelector('li');         // 返回第一个元素值
+        console.log(li)
+    
+        // 通过选择器 all 根据指定选择器返回
+        var allBox = document.querySelectorAll('.box')
+        console.log(allBox)
+
+        var lis = document.querySelectorAll('li')
+        console.log(lis)
+    </script>
+
+
+
+    <!-- 4.获取特殊元素 body html -->
+    <script>
+        // (1) 获取body 
+        var bodyEle = document.body
+        console.log(bodyEle)
+        console.dir(bodyEle)
+
+        // (2) 获取html
+        var htmlEle = document.documentElement
+    </script>
+
+
+
+    <!-- ****************************************************第二部分************************************************************** -->
+
+
+
+
+    <!-- 事件 -->
+    <!-- JS基础 动态页面 事件是可以被JS侦测到的行为触发->响应机制 -->
+    <!-- 每个元素都可以产生触发JS事件 -->
+
+    <!-- 事件三部分: 1. 事件源: 事件被触发的对象 谁(标签) 按钮 
+                    2. 事件类型：如何触发 eg.鼠标点击 鼠标经过 键盘触发 
+                    3. 事件处理程序: 函数赋值 -->
+
+    <!-- 执行事件的步骤: 1.获取事件源 2. 注册事件(绑定事件) 3. 添加事件处理程序(函数赋值形式) -->
+
+
+
+    <!-- 案例: 点击一个按钮，弹出对话框 -->
+    <button id="btn">唐伯虎</button> 
+    <!-- 事件源 -->
+    <script>
+        var btn = document.getElementById('btn')
+        btn.onclick = function() {
+            // onclick 鼠标点击(事件类型) = 函数赋值
+            alert('点秋香')
+        }
+    </script>
+
+
+
+    <!-- 案例 点击div 控制台输出 我被选中了  -->
+    <div>1 2 3</div>
+    <script>
+        var div = document.querySelector('div')    // 事件源
+        //div.onclick                              // 绑定事件
+        div.onclick = function() {                 // 添加事件处理程序 
+            console.log('我被选中了')            
+        }
+    </script>
+
+
+
+    <!-- 改变元素内容 操作DOM-->
+    <!-- 方法一 element.innerText   从起始位置到最终位置内容 但它除了html标签外 同时空格和换行也会去掉 -->
+    <!-- 方法二 element.innerHTML   起始位置到最终位置的全部内容 包括html标签 同时保留空格和换行  使用更多 -->
+    <button>显示当时系统时间</button>
+    <div>某个时间</div>
+    <p>123</p>
+    <script>
+        // 当我们点击了按钮 div里的内容会发生变化
+
+        // 1. 获取元素
+        var btn = document.querySelector('button')
+        var div = document.querySelector('div')
+        // 2. 注册事件
+        btn.onclick = function() {
+            div.innerText = '2024-11-12'   // 点击'显示当时系统时间' -> 2024-11-12
+        }
+
+        // 使点击后时间能够随时变化
+        function getDate() {
+            var date = new Date()
+            // 我们写一个 2024年 11月 12日 星期二
+            var year = date.getFullYear()
+            var month = date.getMonth() + 1
+            var dates = date.getDate()
+            var arrTime = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六']
+            var day = date.getDay()
+            return '今天是: ' +year + '年' + month + '月' + dates + '日' + arrTime[day]
+        }
+
+        // 元素也可以不添加注册事件
+        var p = document.querySelector('p')
+        p.innerText = getDate()
+    </script>
+
+
+
+    <!-- innerText和innerHTML区别 -->
+    <p>
+        我是文字
+        <span>123</span>
+
+    </p>
+    <div></div>
+    <script> 
+        // innerText 不识别html标签 直接显示在页面中 非标准
+        var div = document.querySelector('div')
+        div.innerText = '今天是: 2024'
+
+        // innerHTML 识别html标签并产生效果 标准 W3C标准
+        div.innerHTML = '<strong>今天是:</strong> 2024'
+
+        // 这两个属性是可读写的 可以获取元素里面的内容
+        var p = document.querySelector('p')
+        console.log(p.innerText)
+    </script>
+
+
+
+    <!-- 改变元素的属性  scr -->
+    <button id="zxy">张学友</button>
+    <button id="ldh">刘德华</button> <br>
+    <img src="images/ldh.jpg" alt="">
+    <script>
+        // 1.获取元素
+        var ldh = document.getElementById('ldh')
+        var zxy = document.getElementById('zxy')
+        var img = document.querySelector('img')
+
+        // 2.注册事件 处理程序
+        zxy.onclick = function() {
+            img.src ='images/zxy.jpg'
+        }
+        ldh.onclick = function() {
+            img.src ='images/ldh.jpg'
+        }
+    </script>
+
+
+
+    <!-- 案例 分时问候 -->
+    <!-- 不同时间提供不同的问候语 -->
+    <img src="images/s.gif" alt="">
+    <div>上午好</div>
+    <!-- 要求: 1.根据系统时间不同判断 需要获取当前时间
+            2. 利用多分支语句设置不同图片
+            3. 需要一个图片 并根据不同时间修改图片 需要src
+            4. 需要一个div -->
+    <script>
+        // 1.获取元素
+        var img = document.querySelector('img')
+        var div = document.querySelector('div')
+
+        // 2.得到当前的时间
+        var date = new Date()
+        var h = date.getHours()
+
+        // 3.判断小时数 改变图片和文字信息
+        if (h < 12) {
+            // 判断为上午
+
+            img.src = 'image/s.gif'
+            div.innerHTML = '上午好'
+        }
+        else if( h < 18) {
+            // 判断为下午
+
+            img.src = 'images/x.gif'
+            div.innerHTML = '下午好'
+        }
+        else {
+            // 判断为晚上
+
+            img.src = 'images/w.gif'
+            div.innerHTML = '晚上好'
+        }
+    </script>
+
+
+
+    <!-- 改变表单属性 -->
+    <!-- DOM可以改变的表单元素属性: type value checked selected disabled -->
+    <button>按钮</button>
+    <input type="text" value="输入内容">  
+    <script>
+        // 1.获取元素
+        var btn = document.querySelector('button');
+        var input = document.querySelector('input');
+
+        // 2.注册事件 处理程序
+        btn.onclick = function(){
+            // input.innerHTML = '点击了'; 修改普通盒子内容
+
+            // 修改value
+            input.value = '被点击了';
+
+            // 修改disabled  this指向时间函数的调用者 btn    btn.disabled
+            this.disabled = true;
+        }
+    </script>
+
+
+
+    <!-- 案例 隐藏密码改显示密码 -->
+    <!-- 点击眼睛 密码框类型改为文本框 -->
+    <!-- 算法: 利用一个flag变量 判断flag值 1切换问文本框 0切换为密码框 -->
+    <!-- 主程序部分 html -->
+    <div class="box">
+        <!-- 眼睛图案 -->
+        <label for="">
+            <img src="veer-422756832.jpg" alt="eye" id="eye">
+        </label>
+        <!-- 密码框 -->
+        <input type="password" name="" id="pwd">
+    </div>
+    <!-- js -->
+    <script>
+        // 1.获取元素
+        var eye = document.getElementById('eye');
+        var pwd = document.getElementById('pwd');
+
+        // 2.注册事件 处理程序
+        var flag = 0;
+        eye.onclick = function () {
+            // 点击眼睛之后 要让flag变化
+            if (flag == 0) {
+                pwd.type = 'text';
+                eye.src = 'veer-423066486.jpg';
+                flag = 1;
+            }
+            else {
+                pwd.type = 'password';
+                eye.src = 'veer-422756832.jpg';
+                flag = 0;
+            }
+        }
+    </script>
+
+
+
+    <!-- 改变样式属性 -->
+    <!-- 改变元素大小 颜色 位置等
+        element.style     行内样式操作 样式少 功能简单
+        element.className 类名样式操作
+     -->
+    <!-- 使用style -->
+    <div></div>
+    <script>
+        // 1.获取元素
+        var div = document.querySelector('div');
+
+        // 2.注册事件 处理程序
+        div.onclick = function () {
+            // div.style 一定写驼峰命名法
+            this.style.backgroundColor = 'purple';
+            this.style.width = '250px';
+        }
+    </script>  
+
+
+
+    <!-- 循环精灵图背景 -->
+    <!-- 首先精灵图图片排列有规律的
+        核心思路：利用for循环 修改精灵图片的背景位置background-position
+        剩下的就是考验你的数学功底了
+        让循环里面的i索引号*44就是每个图片的y坐标 
+     -->
+    <div>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script>
+        // 1.获取元素
+        var lis = document.querySelectorAll(li);
+        for (var i = 0; i > lis.length; i++) {
+            // 索引号 乘以 44 得 每个li的背景 的 y坐标
+            var index = i * 44;  // y坐标
+            lis[i].style.backgroundPosition = '0 - ' + index + 'px';
+        }
+    </script>
+
+    <!-- 使用className -->
+    <!-- div原本有自己的属性样式 通过script修改了属性样式 -->
+    <!-- 适用于批量修改 原来类名被覆盖 因此className为保留字、字面量 -->
+    <div>文本</div>
+    <script>
+        var test = document.querySelector('div');
+        test.onclick = function () {
+            // 当前元素的类名改为change 适用于样式较多或功能复杂的情况
+            this.className = 'change';
+            // this.className = 'first change'   多类名选择器
+        }
+    </script>
+
+
+
+    <!-- 排他思想 -->
+    <!-- 同时存在多个按钮 当点击一个按钮 与其他按钮产生不同特效 -->
+    <!-- 方法: 首先排除其他人 然后设置需要的样式 -->
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+    <button>按钮5</button>
+    <script>
+        // 1.获取所有按钮元素
+        var btns = document.getElementsByTagName('button');
+
+        // btns得到的是伪数组 里面的每一个元素 btns[i]
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].onclick = function () {
+                // 循环排他思想
+                // (1)把所有按钮背景颜色去掉  
+                for (var i = 0; i < btns.length; i++) {
+                    btns[i].style.backgroundColor = '';
+                }
+                // (2)让当前this的按钮变成pink
+                this.style.backgroundColor = 'pink';
+            }
+        }
+    </script>
+
+
+
+    <!-- 改变 自定义属性值 -->
+    <!-- 获取属性值 element.getAttribute('属性') 可以获取自定义属性值 -->
+    <!-- 此处id index 为自定义属性-->
+    <div id="demo" index="1"></div>
+    <script>'-0'
+        var div = document.querySelector('div');
+        // 1.获取元素的属性值
+        // get得到 attribute属性
+        console.log(div.getAttribute('id'));
+        console.log(div.getAttribute('index'));
+
+        // 2.设置元素属性值
+        // setAttribute
+        div.setAttribute('id', 'D');
+        div.setAttribute('index', '2');
+        div.setAttribute('class', 'footer');  // class特殊 直接写class 
+
+        // 3.移除元素属性
+        // removeAttribute
+        div.removeAttribute('index');
+    </script>
+
+
+
+    <!-- 案例 tab栏切换 重点 -->
+    <!-- 导航栏 点击后 改变画面 -->
+    <!-- tab栏有两个大的模块 上边模块是选项卡 点击某一个 底色变红 其余不变(排他) -->
+    <div class="tab">
+        <div class="tab_list">
+            <ul>
+                <li class="current">商品介绍</li>
+                <li>规格与包装</li>
+                <li>售后保障</li>
+                <li>商品评价(5000)</li>
+                <li>手机社区</li>
+            </ul>
+        </div>
+        <div class="tab_con">
+            <div class="item" style="display: block;">
+                商品介绍模块内容
+            </div>
+            <div class="item">
+                规格与包装模块内容
+            </div>
+            <div class="item">
+                售后保障模块内容
+            </div>
+            <div class="item">
+                商品评价(5000)模块内容
+            </div>
+            <div class="item">
+                手机社区模块内容
+            </div>
+        </div>
+    </div>
+    <script>
+        // 1.模块选项卡 点击某一个 变红 + 排他
+        // 获取元素
+        var tab_list = document.querySelector('.tab_list');
+        var lis = tab_list.querySelectorAll('li');
+        var items = document.querySelectorAll('.item');
+        for (var i = 0; i < lis.length; i++) {
+            // 编号
+            lis[i].setAttribute('index', i);
+
+            // 排他
+            lis[i].onclick = function () {
+                for (var i = 0; i < lis.length; i++) {
+                    lis[i].className = '';
+                }
+            }
+            this.className = 'current';
+
+            // 2.下面模块全部写进点击事件 显示内容
+            // 核心思路: 给上面的tab_list里面的所有li添加自定义属性 从0开始编号
+            this.getAttribute('index');
+            console.log(index);
+            // 当我们点击tab_list里面的某个li 让tab_con里面对应序号的内容显示 其余隐藏(排他)
+            items[index].style.display = 'block'; // 只展示index选择的部分
+
+        }
+    </script>
+
+
+
+    <!-- H5自定义属性 -->
+    <!-- 适用场景 自定义属性getTime 想要输出 -->
+    <div getTime="20" data-list-name="andy"></div>
+    <script>
+        var div = document.querySelector('div');
+        // console.log(div.getTime); 普通输出方式不能得到自定义属性值
+        console.log(div.getAttribute('getTime'));  // 这很麻烦
+    </script>
+
+    <!-- H5自定义属性 data-
+        data-开头作为属性名并赋值      <div data-index = "1"></div> 
+    -->
+    <div getTime="20" data-index="2"></div>
+    <script>
+        var div = document.querySelector('div');
+        console.log(div.getAttribute('getTime'));
+        // 设置 修改
+        div.setAttribute('data-time', 20);
+
+        // 获取 方法一
+        console.log(div.getAttribute('data-index'));
+
+        // 方法二 element.dataset.index 或者 element.dataset['index']
+        console.log(div.dataset.index);
+        console.log(div.dataset['index']);
+
+        // 如果自定义属性名很长 data-list-name 驼峰命名法
+        console.log(div.dataset.listName);
+    </script>
+
+
+
+    <!-- 节点操作 节点层级 -->
+    <!-- 父子兄层级关系 
+         文档 根元素<html> 
+            元素<head> 元素<title> 文本 "文档标题"
+
+            元素<body> 元素<h1> 文本 "我的标题"
+
+                        元素<a> 属性href
+                                文本 "我的标题"
+     -->
+
+    <!-- 父级节点 node.parentNode -->
+     <div class="demo">
+        <div class="box">
+            <span class="erweima">x</span>
+        </div>
+     </div>
+    <script>
+        // 获取最近的父节点
+        var erweima = document.querySelector('.erweima');
+        console.log(erweima.parentNode);  // box
+    </script>
+
+
+
+    <!-- 子节点 parentNode.childNodes(标准) -->
+    <!-- 返回包含指定节点的子节点集合 -->
+    <ul>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+        // 得到所有子节点 包含 元素节点 文本节点 换行 等等
+        console.log(ul.childNodes);
+
+        // 只得到元素节点 方法一
+        var ul = document.querySelector('ul');
+        for(var i = 0; i < ul.childNodes.length; i++){
+            if(ul.childNodes[i].nodeType == 1){
+                // ul.childNodes[i] 是元素节点
+                console.log(ul.childNodes[i]);
+            }
+        }
+
+        // 方法二 最常用
+        console.log(ul.children);
+
+        // parentNode.firstChild
+        // parentNode.lastChild
+        var li = document.querySelector('li');
+        console.log(li.firstChild);   // 直接获取 第一个就不是元素节点
+        console.log(li.lastChild);
+        
+        // parentNode.firstElementChild 只获取元素节点 
+        // parentNode.lastElementChild 
+        console.log(li.firstElementChild);
+        console.log(li.lastElementChild);
+
+        // 实际开发的写法
+        console.log(li.children[0]);   // first
+        console.log(li.children[li.children.length - 1]);  // last
+    </script>
+
+
+
+    <!-- 兄弟节点 node.nextSibling -->
+    <!-- 返回当前元素的兄弟节点 所有 -->
+    <div>我是div</div>
+    <span>我是span</span>
+    <script>
+        var div = document.querySelector('div');
+
+        // 得到下一个兄弟
+        console.log(div.nextSibling);  // 得到换行
+        // 得到上一个兄弟
+        console.log(div.previousSibling); // 得到换行
+        
+        // 只得到元素节点 Element
+        // div.nextElementSibling div.previousElementSibling
+    </script>
+    
+
+    <!-- 以上方法都存在一些兼容性问题 解决 -->
+    <script>
+        function getNextElementSibling(element) {
+            var el = element;
+            while(el = el.nextSibling){
+                if(el.nodeType == 1){
+                    return el;
+                }
+            }
+            return null;
+        }
+    </script>
+
+
+
+    <!-- 动态创建节点 -->
+    <ul>
+    <!-- <li></li> -->
+    </ul>
+    <script>
+        // 创建li
+        // 1.创建元素节点
+        var li = document.createElement('li');
+
+        // 2.添加节点 添加到末尾      父级.appendChild(子级)
+        var ul = document.querySelector('ul');
+        ul.appendChild(li);
+
+        // 3.添加到前面      node.insertBefore(指定元素, 指定位置)
+        var u = document.createElement('u');
+        ul.insertBefore(u, ul.children[0]);
+
+        // 4.删除
+        ul.removeChild(u);
+    </script>
+
+
+
+    <!-- 删除节点 -->
+    <ul>
+        <li>1</li>
+    </ul>
+    <script>
+        // 创建
+        var ul = document.querySelector('ul');
+        var btn = document.querySelector('button');
+
+        // 删除 点击按钮删除
+        btn.onclick = function(){
+            // ul.removeChild(ul.children[0]);
+            if(ul.children.length == 0){
+                this.disabled = True;
+            }
+            else{
+                ul.removeChild(ul.children[0]);
+            }
+        }
+    </script>
+
+
+
+    <!-- 复制节点 -->
+    <!-- node.cloneNode() 得到副本 -->
+    <script>
+        var ul = document.querySelector('ul');
+        var l = ul.children[0].cloneNode();  // 无参 或 false->浅拷贝 没有内容 
+        var li = ul.children[0].cloneNode(true);   
+        ul.appendChild(li);
+    </script>
+
+
+
+    <!-- ****************************************************第三部分************************************************************** -->
+
+
+
+
+    <!-- 事件高级 -->
+    <!-- 注册事件(绑定事件) -->
+    <!-- 传统方式 -->
+    <button>传统注册事件</button>
+    <button>方法监听方式注册事件</button>
+    <button>事件监听</button>
+    <script>
+        var btns = document.querySelectorAll('button');
+        btns[0].onclick = function(){
+            alert('hi');
+        }
+        btns[0].onclick = function(){
+            alert('hao a u');  // 唯一性 后面把前面覆盖
+        }
+
+        /* 方法监听
+            eventTarget.addEventListener(type, listener[, useCapturel)
+            eventTarget.addEventListener()方法将指定的监听器注册到eventTarget(目标对象)上，当该对
+            象触发指定的事件时，就会执行事件处理函数。
+            该方法接收三个参数：
+                type：事件类型字符串，比如click、mouseover，注意这里不要带on
+                listener：事件处理函数，事件发生时，会调用该监听函数
+                useCapture：可选参数，是一个布尔值，默认是false。学完DOM事件流后，我们再进一步学习
+        */
+        btns[1].addEventListener('click', function(){
+            alert('监听');
+        })
+        btns[1].addEventListener('click', function(){
+            alert('2');   // 不会覆盖
+        })
+
+        /* 事件监听
+            attachEvent事件监听方式(过时了)
+            eventTarget.attachEvent (eventNameWithOn, callback)
+            eventTarget.attachEvent ()方法将指定的监听器注册到 eventTarget（目标对象）上，当该对象触
+            发指定的事件时，指定的回调函数就会被执行。
+            该方法接收两个参数：
+                eventNameWithOn：事件类型字符串，比如onclick、onmouseover，这里要带on
+                callback：事件处理函数，当目标触发事件时回调函数被调用 
+        */
+       btns[2].attachEvent('onclick', function(){
+            alert('监听');
+       });
+    </script>
+
+
+
+    <!-- 删除 解绑事件 -->
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <script>
+        // 1.
+        var divs = document.querySelectorAll('div');
+        divs[0].onclick = function(){
+            alert(11);
+            // 传统方式
+            divs[0].onclick = null;
+        }
+
+        // 2.
+        divs[1].addEventListener('click',fn);
+        function fn(){ // 这个函数不能写在里面
+            alert(22);
+            divs[1].removeEventListener('click',fn);
+        }
+
+        // 3.
+        divs[2].attachEvent('onclick', fn1);
+            function fn1() {
+                alert(33);
+                divs[2].getachEvent('onclick', fn1);
+            }
+    </script>
+
+
+
+    <!-- 事件流 事件传播的过程 -->
+    <!-- DOM事件流
+        1.捕获阶段     从文件 打开 到html 到body
+        2.当前目标阶段 从body 到div
+        3.冒泡阶段     从div开始 反应 回文件
+
+        js代码只能执行捕获或冒泡的其中一个阶段
+        onclick attachEvent只能在冒泡阶段
+        addEventListener(type, listener[,useCapture])第三个参数如果是true，表示在事件捕获阶段调用
+            事件处理程序；如果是false（不写默认就是false），表示在事件冒泡阶段调用事件处理程序。
+    -->
+      
+
+
+    <!-- 事件对象 -->
+    <div>1</div>
+    <script>
+        var div = ducument.querySelector('div');
+        div.onclick = function(event){
+            // event就是事件对象 即形参 需前置存在事件 
+            console.log(event);
+        }
+
+        div.onclick = function(e){
+            // 兼容性写法
+            e = e || window.event;
+            console.log(e);
+        }
+
+        /* 事件对象的常见属性和方法
+            e.target            返回触发事件的对象           标准
+            e.srcElement        返回触发事件的对象           非标准 ie6-8使用
+            e.type              返回事件的类型 比如 click mouseover 不带on
+            e.cancelBubble      该属性阻止冒泡              非标准 ie6-8使用
+            e.returnValue       该属性 阻止默认事件 默认行为 非标准 ie6-8使用 比如不让链接跳转
+            e.preventDefault()  该方法 阻止默认事件 默认行为 标准 比如不让链接跳转
+            e.stopPropagation() 阻止冒泡标准 (重要)
+        */
+        div.addEventListener('click', function(e){
+            console.log(e.target); // 返回触发事件的对象(元素) 终点 
+            console.log(this); // this返回绑定事件的对象(元素) 起点
+        })
+
+        div.addEventListener('click', fn);
+        function fn(e){
+            console.log(e.type);
+        }
+
+        var a = ducument.querySelector('a');
+        a.addEventListener('click', function(e){
+            e.preventDefault();
+        })
+    </script>
+
+
+
+    <!-- 事件委托(代理 委派) 重要 -->
+    <!-- 原理 不是每个子节点单独设置事件监听器，而是事件监听器设置在其父节点上，然后利用冒泡原理影响设置每个子节点。
+
+        以上案例：给ul注册点击事件，然后利用事件对象的target 来找到当前点击的li，因为点击li，事件会冒泡到ul上，
+        ul有注册事件，就会触发事件监听器。提高了程序的性能。
+    -->
+    <ul>
+        <li>111</li>
+    </ul>
+    <script>
+        var ul = document.querySelector('ul');
+        ul.addEventListener('click', function(e){
+            alert('222');
+            e.target.style.backgroundColor = 'pink';
+        })
+    </script>
+
+
+
+    <!-- 鼠标事件对象 -->
+    <!-- event对象代表事件的状态，跟事件相关的一系列信息的集合。
+     现阶段我们主要是用鼠标事件对象MouseEvent 和键盘事件对象KeyboardEvent。
+        e.clientX   返回鼠标相对于浏览器窗口可视区的X坐标
+        e.clientY   返回鼠标相对于浏览器窗口可视区的Y坐标
+        e.pageX     返回鼠标相对于文档页面的X坐标IE9+支持  (常用)
+        e.pageY     返回鼠标相对于文档页面的Y坐标 IE9+支持
+        e.screenX   返回鼠标相对于电脑屏幕的X坐标
+        e.screenY   返回鼠标相对于电脑屏幕的Y坐标 
+    -->
+
+
+
+    <!-- 键盘事件 -->
+    <!-- onkeyuq某个键盘按键被松开时触发
+         onkeydown某个键盘按键被按下时触发
+         onkeypress某个键盘按键被按下时 触发   但是它不识别功能键 比如 ctrl shift 箭头等 
+
+         有优先级  keydown > keypress > keyup
+     -->
+    <script>
+        // 1.keyup 按键弹起时触发
+        document.onkeyup = function(){
+            console.log('弹起');
+        }
+
+        document.addEventListener('keyup', function(){
+            console.log('tan');
+        })
+
+
+        // 键盘事件对象
+        document.addEventListener('keyup', function (e) {
+            console.log(e);   // e为对象
+            console.log(e.keyCode);   // ASCII值
+
+            // keyup keydown不区分大小写 大小写字母ASCII值输出相同 
+            // keypress区分大小写
+
+            if(e.keyCode == 65){
+                alert('您按下的是a键');
+            }
+        })
+    </script>
+
+
+
+    <!-- ****************************************************第四部分************************************************************** -->
+
+
+
+    <!-- BOM 浏览器对象模型 -->
+    <!-- BOM(BrowserObject Model)即浏览器对象模型，它提供了独立于内容而与浏览器窗口进行交互的对象，其核心对象是window。
+        BOM由一系列相关的对象构成，并且每个对象都提供了很多方法与属性。
+        BOM缺乏标准，JavaScript语法的标准化组织是ECMA，DOM的标准化组织是 W3C，BOM最初是Netscape 浏览器标准的一部分。 
+
+        BOM > DOM 
+        window.document DOM为附属
+     -->
+    <script>
+        console.dir(window);
+    </script>
+
+
+
+    <!-- window对象常见事件 -->
+    <!-- 窗口加载事件 页面加载完毕后执行 页面加载事件  -->
+    <script>
+        window.onload = function(){}  // 只能写一个
+
+        window.addEventListener('load', function(){});  // 可以写多个 全部加载完才执行
+
+        document.addEventListener('DOMContentLoaded', function(){  // 倒着输出 DOM加载完就执行 更快
+            alert('33'); 
+        })
+    </script>
+
+
+
+    <!-- 调整窗口大小事件 常用于响应式布局 -->
+    <script>
+        window.onresize = function(){}
+
+        window.addEventListener("resize", function(){})   // 当窗口大小被拖拉 变化 就会触发执行内函数
+    </script> 
+
+
+
+    <!-- 定时器 eg.网页自动轮播 -->
+    <!-- 1. setTimeout() 时间过了之后执行函数
+         window.setTimeout(函数 , [延迟毫秒数]);    window可以省略
+
+         2. setInterval() 间隔时长到了 就执行一次函数 反复执行
+         window.setInterval(函数 , [间隔时长毫秒]);
+    -->
+    <button>点击停止定时器</button>
+    <script>
+        var btn = ducument.querySelector('button');
+
+        // 设置定时器
+        setTimeout(function(){
+            console.log('时间到了');            
+        }, 2000)
+
+        // 可以设置名字
+        var timer1 = setimeout(function(){
+            console.log('点击');
+        }, 20000);
+        // 此处的function称为回调函数callback
+
+        // 停止定时器
+        btn.addEventListener('click', function(){
+            clearTimeout(time1);  // 参数为定时器名字
+        })
+    </script>
+
+
+
+    <!-- this -->
+    <button>点击</button>
+    <script>
+        // this 指向问题 一般情况下this的最终指向的是那个调用它的对象
+        // 1.全局作用域或者普通函数中this指向全局对象window（注意定时器里面的this指向window）
+        console.log(this);  // window
+        
+        // 2.方法调用中谁调用this指向谁
+        function fn(){
+            console.log(this);
+        }
+        fn();   // window   window.fn() this指调用对象
+
+        setTimeout(function(){
+            console.log(this); // 也是省略了window this仍指window
+        })
+
+        var o = {
+            sayHi: function () {
+                console.log(this);  // o
+            }
+        }
+
+        // 3.构造函数中this指向构造函数的实例
+        function Fu(){
+            console.log(this);   
+        }
+        var fu = new Fu();  // fu
+    </script>
+
+
+
+    <!-- js是单线程语言 -->
+    <!-- 同步(一个一个执行) 和 异步(可以提前处理别的任务) -->
+    <script>
+        /* 常见异步 : 普通函数如click、resize
+                     资源加载如load、error
+                     定时器如setInterval、setTimeout
+                     回调函数 任务队列(消息队列)
+
+            同步任务 主线程执行线
+
+            先执行同步任务 回调函数放到任务队列(异步)中 所有的同步任务执行完再执行异步任务 
+        
+            提高整体输出效率
+
+            执行线 -> 任务队列 -> 执行线   事件循环
+        */
+        console.log(1);               // 同步任务
+
+        setTimeout(function(){        // 同步任务
+            console.log(3);           // 异步任务 回调函数
+        })
+
+        console.log(2);               // 同步任务
+        // 输出123
+    </script>
+
+
+
+    <!-- location -->
+    <!-- 用于获取、设置窗口的url -->
+
+    <!-- 统一资源定位符(Uniform Resource Locator, URL) 是互联网上标准资源的地址。互联网上的每个文件都有
+        一个唯一的URL，它包含的信息指出文件的位置以及浏览器应该怎么处理它。
+
+        URL的一般语法格式为：
+        protocol://host[:port]/path/[?query]#fragment
+        http://www.itcast.cn/index.html?name=andy&age=18#link
+
+        protocol    通信协议    常用的http, ftp，maito等
+        host        主机（域名） www.itheima.com
+        port        端口号      可选，省略时使用方案的默认端口 如http的默认端口为80
+        path        路径        由零或多个/'符号隔开的字符串，一般用来表示主机上的一个目录或文件地址
+        query       参数        以键值对的形式, 通过&符号分隔开来
+        fragment    片段        #后面内容 常见于链接 锚点
+    -->
+
+    <!-- location属性
+        location.href       获取或者设置 整个URL             重要
+        location.host       返回主机（域名）www.itheima.com
+        location.port       返回端口号 如果未写返回 空字符串
+        location.pathname   返回路径
+        location.search     返回参数                        重要
+        location.hash       返回片段 #后面内容 常见于链接 锚点 
+
+         location方法
+        location.assign()   跟href一样，可以跳转页面（也称为重定向页面）
+        location.replace()  替换当前页面，因为不记录历史，所以不能后退页面
+        location.reload()   重新加载页面，相当于刷新按钮或者 f5 如果参数为true 强制刷新 ctrl+f5         
+     -->
+    <button>点击</button>
+    <script>
+        var btn = document.querySelector('button');
+        btn.addEventListener('click', function(){
+            console.log(location.href);
+
+            location.href = 'http://www.itcast.cn';  // 重新赋值
+        })
+    </script>
+
+    <button>点击</button>
+    <script>
+        var btn = document.querySelector('button');
+        btn.addEventListener('click', function () {
+            // location.assign('http://www.itcast.cn');   记录浏览历史，所以可以实现后退功能
+            location.replace('http://www.itcast.cn')   // 不能后退
+        })
+    </script>
+
+
+
+    <!-- navigator -->
+    <!-- 返回客户机发送服务器的user-agent头部信息    
+        格式:
+            if((navigator.userAgent.match(/ (phonelpadlpod[iPhone [iPod ios|1Pad [Android]
+            Mobile|BlackBerry| IEMobile MQQBrowser JUC] Fennec wOSBrowser BrowserNG WeboS
+            [ Symbian [Windows Phone)/i))) {
+                window.location.href =""    //手机
+            } else {
+                window.location.href ="";   //电脑
+            }
+    -->
+
+
+
+    <!-- history -->
+    <!-- 与浏览器历史记录交互 包括url
+        back()    后退
+        forward() 前进
+        go(参数)  前进后退功能 参数1表示前进一个页面 -1后退一个页面
+    -->
+    <a href="a.html">点击我去往列表页</a>
+    <button>前进</button>
+    <script>
+        var btn = document.querySelector('buttn');
+        btn.addEventListener('click', function(){
+            history.forward();
+        })
+    </script>
+
+
+
+    <!-- ****************************************************第五部分************************************************************** -->
+
+
+
+    <!-- pc端网页特效 -->
+    <!-- 元素偏移量offset系列 -->
+    <!-- offset 翻译过来就是偏移量，我们使用offset系列相关属性可以动态的得到该元素的位置（偏移）、大小等。
+        获得元素距离带有定位父元素的位置
+        获得元素自身的大小（宽度高度）
+        注意：返回的数值都不带单位
+
+        element.offsetParent    返回作为该元素带有定位的父级元素 如果父级都没有定位则返回body
+        element.offsetTop       返回元素相对带有定位父元素上方的偏移
+        element.offsetLeft      返回元素相对带有定位父元素左边框的偏移
+        element.offsetWidth     返回自身包括padding、边框、内容区的宽度，返回数值不带单位
+        element.offsetHeight    返回自身包括padding、边框、内容区的高度，返回数值不带单位 
+    -->
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <script>
+        var father = document.querySelector('.father');
+        var son = document.querySelector('.son');
+        console.log(father.offsetTop);
+        console.log(father.offsetLeft);
+        console.log(son.offsetLeft);
+
+        var w = document.querySelector('.w');
+        console.log(w.offsetWidth); 
+    </script>
+
+
+
+    <!-- 元素可视区client系列 -->
+    <!-- client翻译过来就是客户端，我们使用client系列的相关属性来获取元素可视区的相关信息。通过client系列
+        的相关属性可以动态的得到该元素的边框大小、元素大小等。
+
+        element.clientTop   返回元素上边框的大小
+        element.clientLeft  返回元素左边框的大小
+        element.clientWidth 返回自身包括padding、内容区的宽度，不含边框，返回数值不带单位
+        element.clientHeight返回自身包括padding、内容区的高度，不含边框，返回数值不带单位 
+    -->
+    <div></div>
+    <script>
+        var div = document.querySelector('div');
+        console.log(div.clientHeight);
+    </script>
+
+
+
+    <!-- 元素滚动scroll系列 -->
+    <!-- scroll 翻译过来就是滚动的，我们使用scroll系列的相关属性可以动态的得到该元素的大小、滚动距离等。
+
+        element.scrollTop   返回被卷去的上侧距离，返回数值不带单位
+        element.scrollLeft  返回被卷去的左侧距离，返回数值不带单位
+        element.scrollWidth 返回自身：实际的宽度，不含边框，返回数值不带单位
+        element.scrollHeight返回自身实际的高度，不含边框，返回数值不带单位 
+    -->
+    <div></div>
+    <script>
+        var div = document.querySelector('div');
+        console.log(div.scrollHeight);
+    </script>
+
+
+
+    <!-- mouseover 和 mouseenter -->
+    <!-- 当鼠标移动到元素上时就会触发mouseenter事件
+        类似mouseover，区别是 mouseover鼠标经过自身盒子会触发，经过子盒子还会触发。
+                             mouseenter只会经过自身盒子触发 因为不会冒泡
+    -->
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <script>
+        var father = document.querySelector('.father');
+        var son = document.querySelector('.son');
+        father.addEventListener('mouseenter', function () {
+            console.log(11);
+        })
+    </script>
+
+
+
+    <!-- 动画函数 -->
+    <!-- 核心原理：通过定时器setlnterval)不断移动盒子位置。
+
+        实现步骤：
+        1.获得盒子当前位置
+        2.让盒子在当前位置加上1个移动距离
+        3.利用定时器不断重复这个操作
+        4.加一个结束定时器的条件
+        5.注意此元素需要添加定位，才能使用element.style.left
+    -->
+    <div></div>
+    <script>
+        // 1.获得盒子当前位置
+        var div = document.querySelector('div');
+
+        // 2.让盒子在当前位置加上1个移动距离
+        div.style.left = div.offsetLeft + 1 + 'px';
+
+        // 3.利用定时器不断重复这个操作
+        var timer = setInterval(function(){
+
+            // 4.加一个结束定时器的条件
+            if(div.offsetLeft >= 400){
+                clearInterval(timer);
+            }
+
+            div.style.left = div.offsetLeft + 5 + 'px';   
+        }, 30);  // 每隔30毫秒加5
+    </script>
+
+
+
+    <!-- 动画封装 -->
+    <!-- 参数: 动画对象、移动的距离 -->
+    <div></div>
+    <script>
+        // 简单动画函数封装obj目标对象 target 目标位置
+
+        function animate(obj, target) {
+            // bug 当我们不断点击按钮 元素移动会越来越快 因为开启太多定时器 
+            // 解决办法↓ 清除以前的定时器 只保留一个
+            clearInterval(obj.timer);
+
+            // var timer = setInterval(function () {
+            // 我们可以给不同元素记录不同定时器 设定姓名
+
+            obj.timer = setInterval(function () {
+                if (obj.offsetLeft >= target){
+                    clearInterval(timer);
+                }
+                obj.style.left = obj.offsetLeft + 1 + 'px';
+            }, 30);
+        }
+        var div = document.querySelector('div');    
+        animate(div,300); 
+    </script>
+
+
+
+    <!-- 缓冲动画 -->
+    <!-- 改变动画速度 通常变慢    方法: (目标值 - 现在的位置) / 10 -->
+    <div></div>
+    <script>
+        function animate(obj, target) {
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                // 步长 往上取整
+                //var step = Math.ceil((target - obj.offsetLeft)/10);
+                var step = (target - obj.offsetLeft) / 10;
+                step > 0 ? Math.ceil(step) : Math.floor(step);
+
+                if (obj.offsetLeft == target) {
+                    clearInterval(timer);
+                }
+                // 改变此处1为缓冲动画公式
+                obj.style.left = obj.offsetLeft + step + 'px';
+            }, 30);
+        }
+        var div = document.querySelector('div');
+        animate(div, 300); 
+    
+        // 想要让盒子往回走 可以写一个到800的元素 然后再点击到500的动画
+    </script>
+
+
+
+    <!-- 动画添加回调函数 -->
+    <div></div>
+    <script>
+        function animate(obj, target, callback) {
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                var step = (target - obj.offsetLeft) / 10;
+                step > 0 ? Math.ceil(step) : Math.floor(step);
+                if (obj.offsetLeft == target) {
+                    clearInterval(timer);
+
+                    // 回调函数写在此处 定时器结束时
+                    if(callback){
+                        callback();
+                    }
+                }
+                obj.style.left = obj.offsetLeft + step + 'px';
+            }, 30);
+        }
+        var div = document.querySelector('div');
+        animate(div, 300, function(){
+            alert('hi');
+            span.style.backgroundColor = 'red';
+        });
+    </script>
+
+
+    <!-- 动画函数封装成js文件 -->
+    <!-- 1.新建文件 animate.js
+         2.写入所属的script内容 
+    -->
+
+
+
+    <!-- 重要案例 网页轮播图 -->
+    <!-- 功能需求：
+            1.鼠标经过轮播图模块，左右按钮显示，离开隐藏左右按钮。
+            2.点击右侧按钮一次，图片往左播放一张，以此类推，左侧按钮同理。
+            3.图片播放的同时，下面小圆圈模块跟随一起变化。
+            4.点击小圆圈，可以播放相应图片。
+            5.鼠标不经过轮播图，轮播图也会自动播放图片。
+            6.鼠标经过，轮播图模块，自动播放停止。 
+    
+        案例分析
+            1.js较多 单独新建js文件夹 引入页面
+                index.js
+                head中   <script src="js/index.js"></script>
+            2.需要load事件
+            3.鼠标经过轮播图模块 左右按钮显示 离开隐藏左右按钮
+        
+        三、动态小圆圈
+            1.核心思路：小圆圈的个数要跟图片张数一致
+            2.所以首先先得到ul里面图片的张数（图片放入li里面，所以就是li的个数）
+            3.利用循环动态生成小圆圈（这个小圆圈要放入ol里面）
+            4.创建节点 createElement('li')
+            5.插入节点ol.appendChild(li)
+            6.第一个小圆圈需要添加current类
+        
+        四、小圆圈排他思想 点击图片相应小圆圈 变形式
+            1.点击当前小圆圈，就添加current类
+            2.其余的小圆圈就移除这个current类
+            3.注意：我们在刚才生成小圆圈的同时，就可以直接绑定这个点击事件了。
+
+        五、点击小圆圈 会播放相应的图片
+            1.此时用到animate动画函数，将js文件引入
+            （注意，因为index.js依赖animate.js 所以，animate.js 要写到 index.js上面）
+            2.使用动画函数的前提，该元素必须有定位 position:absolute;  
+            3.注意是ul移动 而不是小li
+            4.滚动图片的核心算法：点击某个小圆圈，就让图片滚动小圆圈的索引号
+              乘以图片的宽度做为ul移动距离
+            5.此时需要知道小圆圈的索引号，我们可以在生成小圆圈的时候，给它设置一个自定义属性，
+              点击的时候获取这个自定义属性即可。
+        
+        七、右侧按钮无缝滚动
+            1.点击右侧按钮一次，就让图片滚动一张。
+            2.声明一个变量num，点击一次，自增1，让这个变量乘以图片宽度，就是ul的滚动距离。
+            3.把ul第一个li复制一份，放到ul的最后面
+            4.当图片滚动到克隆的最后一张图片时，让ul快速的、不做动画的跳到最左侧：left为0
+            5.同时num赋值为0. 可以从新开始滚动图片了.
+        
+        六、克隆第一张图片
+            1.克隆ul第一个li cloneNode()加true 深克隆 复制里面的子节点 false浅克隆
+            2.添加到ul 最后面 appendChild
+
+        八、点击右侧按钮 图片滚动一张 小圆圈随之变化
+            1.最简单的做法是再声明一个变量circle，每次点击自增1，
+              注意，左侧按钮也需要这个变量，因此要声明全局变量。
+            2.但是图片有5张，我们小圆圈只有4个少一个，必须加一个判断条件
+            3.如果circle == 4 就 从新复原为0
+
+        九、轮播图不触发互动的 自动播放
+            1.添加一个定时器
+            2.自动播放轮播图，实际就类似于点击了右侧按钮
+            3.此时我们使用手动调用右侧按钮点击事件arrow_r.click()
+    -->
+
+
+
+    <!-- 节流阀
+        防止轮播图按钮连续点击造成播放过快。
+        节流阀目的：当上一个函数动画内容执行完毕，再去执行下一个函数动画，让事件无法连续触发。
+        核心实现思路：利用回调函数，添加一个变量来控制，锁住函数和解锁函数。
+        开始设置一个变量 var flag=true;
+        If(flag){flag =false; do something) 关闭水龙头
+        利用回调函数动画执行完毕，flag=true   打开水龙头 
+    -->
+
+
+
+    <!-- ****************************************************第六部分************************************************************** -->
+
+
+
+    <!-- 移动端网页特效 -->
+    <!-- 触屏事件 -->
+    <!-- 移动端浏览器兼容性较好，我们不需要考虑以前JS 的兼容性问题，可以放心的使用原生JS 书写效果，
+     但是移动端也有自己独特的地方。比如触屏事件touch（也称触摸事件），Android和IOS都有。
+    
+     touch 对象代表一个触摸点。触摸点可能是一根手指，也可能是一根触摸笔。触屏事件可响应用户手指（或触控
+     笔）对屏幕或者触控板操作。
+
+     常见的触屏事件如下：touchstart 手指触摸到一个DOM元素时触发
+                       touchmove  手指在一个 DOM 元素上滑动时触发
+                       touchend   手指从一个 DOM元素上移开时触发
+    -->
+    <div></div>
+    <script>
+        // 1.获取元素
+        // 2.手指触摸DOM元素事件
+        var div = document.querySelector('dsiv');
+        div.addEventListener('touchstart', function(){
+            console.log('我摸了你');
+        });
+        // 3.手指在DOM元素身上移动事件
+        div.addEventListener('touchmove', function(){
+            console.log('我继续摸');
+        });
+        // 4.手指离开DOM元素事件
+        div.addEventListener('touchend', function () {
+            console.log('轻轻的我走了');
+        });
+    </script>
+
+
+
+    <!-- 触摸事件对象 touchEvent 对touch提问 获取信息 -->
+    <!-- TouchEvent 是一类描述手指在触摸平面（触摸屏、触摸板等）的状态变化的事件。
+        这类事件用于描述一个或多个触点，使开发者可以检测触点的移动，触点的增加和减少，等等
+        touchstart、touchmove、touchend三个事件都会各自有事件对象。 
+
+        touches         正在触摸屏幕的所有手指的一个列表
+        targetTouches   正在触摸当前DOM元素上的手指的一个列表
+        changedTouches  手指状态发生了改变的列表，从无到有，从有到无变化
+     -->
+    <div></div>
+    <script>
+        // 1.获取元素
+        // 2.手指触摸DOM元素事件
+        var div = document.querySelector('div');
+        div.addEventListener('touchstart', function(e){
+            // console.log(e);
+            // 如果监听同一个DOM元素  touches、targetTouches是一样的
+
+            // targetTouches最常使用
+            console.log(e.targetTouches[0]); // 得到正在触摸的dom元素的第一个手指的相关信息
+        });
+
+        // 3.手指在DOM元素身上移动事件
+        div.addEventListener('touchmove', function(){
+
+        });
+
+        // 4.手指离开DOM元素事件
+        div.addEventListener('touchend', function(){
+            console.log(e);
+            // 当手指离开屏幕，没有touches、targetTouches列表 但还有changedTouches
+        }); 
+    </script>
+
+
+
+    <!-- 移动端拖拽元素
+        1.touchstart、touchmove、touchend可以实现拖动元素
+        2.但是拖动元素需要当前手指的坐标值我们可以使用 targetTouches[0]里面的pageX和pageY
+        3.移动端拖动的原理：手指移动中，计算出手指移动的距离。然后用盒子原来的位置+手指移动的距离
+        4.手指移动的距离：手指滑动中的位置减去 手指刚开始触摸的位置
+
+        拖动元素三步曲：
+            (1)触摸元素touchstart：获取手指初始坐标，同时获得盒子原来的位置
+            (2)移动手指touchmove：计算手指的滑动距离，并且移动盒子
+            (3)离开手指touchend:
+
+        注意：手指移动也会触发滚动屏幕所以这里要阻止默认的屏幕滚动e.preventDefault(); 
+    -->
+    <div></div>
+    <script>
+        // (1) 触摸元素 touchstart: 获取手指初始坐标，同时获得盒子原来的位置
+        // (2) 移动手指 touchmove: 计算手指的滑动距离，并且移动盒子
+        // (3) 离开手指 touchend:
+        var div = document.querySelector('div');
+        var startX = 0; //获取手指初始坐标
+        var startY = 0;
+
+        var x = 0; //获得盒子原来的位置
+        var y = 0;
+
+        div.addEventListener('touchstart', function (e) {
+            // 获取手指初始坐标
+            startX = e.targetTouches[0].pageX;
+            startY = e.targetTouches[0].pageY;
+            x = this.offsetLeft;
+            y = this.offsetTop;
+        });
+
+        div.addEventListener('touchmove', function (e) {
+            // 计算手指的移动距离：手指移动之后的坐标减去手指初始的坐标
+            var moveX = e.targetTouches[0].pageX - startX;
+            var moveY = e.targetTouches[0].pageY - startY;
+            // 移动我们的盒子 盒子原来的位置+ 手指移动的距离
+            this.style.left = x + moveX + 'px';
+            this.style.top = y + moveY + 'px';
+            e.preventDefault();   // 阻止屏幕滚动的默认行为
+        });
+    </script>
+
+
+
+    <!-- Swiper插件 -->
+    <!-- https://www.swiper.com.cn -->
+    <!-- 可以使用网络端或者本地端 都需要head中的link引入 -->
+    <!-- 如果有可能有更改或添加内容 注意不要更改复制来的类名属性名 -->
+
+
+
+    <!-- 框架，顾名思义就是一套架构，它会基于自身的特点向用户提供一套较为完整的解决方案。
+        框架的控制权在框架本身，使用者要按照框架所规定的某种规范进行开发。
+        插件一般是为了解决某个问题而专门存在，其功能单一!并且比较小。
+        前端常用的框架有Bootstrap、Vue、Anqular、Reac等。既能开发PC端，也能开发移动端
+        前端常用的移动端插件有swiper、superslide、iscroll等。 
+        
+        框架：大而全，一整套解决方案
+        插件：小而专一，某个功能的解决方案
+    -->
+
+
+
+    <!-- 本地存储 -->
+    <!-- window.sessionstorage
+        1、生命周期为关闭浏览器窗口
+        2、在同一个窗口（页面）下数据可以共享
+        3、以键值对的形式存储使用
+    
+        存储数据: sessionStorage.setItem(key, value)
+        获取数据: sessionStorage.getItem(key, value)
+        删除数据: sessionStorage.removeItem(key, value)
+        清空数据: sessionStorage.clear()
+    -->
+    <input type="text">
+    <button class="set">存储数据</button>
+    <button class="get">获取数据</button>
+    <button class="remove">删除数据</button>
+    <button class="del">清空数据</button>
+    <script>
+        var ipt = document.querySelector('input')
+        var set = document.querySelector('.set')
+        var get = document.querySelector('.get')
+        var remove = document.querySelector('.remove')
+        var del = document.querySelector('.del')
+        set.addEventListener('click', function(){
+            // 存储
+            var val = ipt.value;
+            sessionStorage.setItem('uname', val);   // 输入input值后 会成为uname的value属性
+        })
+        get.addEventListener('click', function(){
+            // 获取
+            console.log(sessionStorage.getItem('uname'));
+        })
+        remove.addEventListener('click', function(){
+            sessionStorage.removeItem('uname');
+        })
+        // del.addEventListener('click', function(){
+        //     sessionStorage.clear();
+        // })
+    </script>
+
+
+
+    <!-- window.localStorage
+        1、生命周期永久生效，除非手动删除否则关闭页面也会存在
+        2、可以多窗口（页面）共享（同一浏览器可以共享）
+        3.以键值对的形式存储使用
+
+        存储数据：localStorage.setltem(key, value)
+        获取数据：localStorage.getltem(key)
+        删除数据：localStorage.removeltem(key)
+        清空数据：localStorage.clear()
+     -->
+
+
+
+    <!-- ****************************************************第七部分************************************************************** -->
+
+
+
+    <!-- jQuery $ -->
+    <!-- javaScript库 library 
+        jQuery就是一个js库 
+        打开jquery官网 直接复制代码 新建js文件 粘贴 head中引入<script src="jquery.min.js"></script>
+
+        jQuery入口函数
+            等着DOM结构渲染完毕即可执行内部代码，不必等到所有外部资源加载完成，jQuery帮我们完成了封装。
+            相当于原生js中的DOMContentLoaded。
+            不同于原生js中的load事件是等页面文档、外部的js文件、css文件、图片加载完毕才执行内部代码。
+            $(function(){
+                //此处是页面DOM加载完成的入口 推荐使用
+            });
+            $(document).ready(function() {
+                //此处是页面DOM加载完成的入口
+            });
+        
+        $是jquery的顶级对象 相当于javaScript中的window
+    -->
+    <div></div>
+    <script>
+        $('div').hide();
+    </script>
+
+
+    <!-- 写完入口函数就可以把script写在div上面 -->
+    <script>
+        $(document).ready(function(){
+            $('div').hide();
+        })
+
+        jQuery(function(){
+            alert(1);
+        })
+    </script>
+    <div></div>
+
+
+
+    <!-- jquery对象 -->
+    <div></div>
+    <script>
+        // 1. DOM对象：用原生is获取过来的对象就是DOM对象
+        var myDiv = document.querySelector('div');// myDiv 是DOM对象
+        console.dir(myDiv);
+
+        //2. jQuery对象：用jquery方式获取过来的对象是iQuery对象。本质：通过$把DOM元素进行了包装
+        $('div');// $('div')是一个jQuery对象
+        console.dir($('div'));
+
+        // 3. jQuery对象只能使用 iQuery 方法，DOM 对象则使用原生的 JavaScirpt 属性和方法   
+        myDiv.style.display = 'none';
+        $('div').hide();
+        // myDiv.hide()；myDiv是一个dom对象不能使用 jquery里面的hide方法
+        // $('div').style.display='none';这个$('div')是一个jQuery对象不能使用原生js的属性和方法     
+    </script>
+
+
+
+    <!-- jquery对象和dom对象间转换 -->
+    <video src="mov.mp4" muted></video>
+    <script>
+        //1. DOM对象转换为jQuery对象
+        //(1)我们直接获取视频，得到就是jQuery对象
+        // $('video')；
+        //(2)我们已经使用原生js获取过来 DOM对象
+        var myvideo = document.querySelector('video');
+        // $(myvideo).play()；jquery里面没有play 这个方法
+
+        //2. jQuery对象转换为DOM对象
+        // myvideo.play()；
+        $('video')[0].play()
+        $('video').get(e).play()
+    </script>
+
+
+
+    <!-- jquery api -->
+    <!-- jQuery 基础选择器
+        原生 JS 获取元素方式很多，很杂，而且兼容性情况不一致，因此jQuery给我们做了封装，使获取元素统一标准。
+        $(“选择器”)//里面选择器直接写CSS选择器即可，但是要加引号
+
+        ID选择器    $("#id")        获取指定ID的元素
+        全选选择器   $('*)           匹配所有元素
+        类选择器    $(".class")     获取同一类class的元素
+        标签选择器  $("div”)        获取同一类标签的所有元素
+        并集选择器  $("div, p,li")  选取多个元素
+        交集选择器  $("li.current") 交集元素 
+        子代选择器  $("ul>li")      使用>号，获取亲儿子层级的元素；注意，并不会获取孙子层级的元素
+        后代选择器  $("ul li")      使用空格，代表后代选择器，获取ul下的所有li元素，包括孙子等
+
+        筛选选择器  
+         :first     $('li:first')  获取第一个li元素
+         :last      $('li:last')   获取最后一个li元素
+         :eq(index) $("li：eq(2)") 获取到的li元素中，选择索引号为2的元素，索引号index从0开始。
+         :odd       $("li:odd")    获取到的li元素中，选择索引号为奇数的元素
+         :even      $("li:even")   获取到的li元素中，选择索引号为偶数的元素
+    -->
+    <div class="nav"></div>
+    <script>
+        $(function(){
+            console.log($(".nav"));
+        })
+    </script>
+
+
+
+    <!-- jquery隐式迭代 -->
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+        // 1.获取四个div
+        console.log($("div"));
+        
+        // jquery设置样式 $('div').css('样式','值')  属性名一定加引号
+        // 2.设置四个div背景为粉色  jquery不能使用style
+        $('div').css('background', 'pink')
+
+        $(function () {
+            $("ul li:first").css("color", "red");
+        })
+    </script>
+
+
+
+    <!-- jquery筛选方法(重点) -->
+    <!-- parent()          √ $("li").parent();               查找父级 返回最近的
+        children(selector) √ $("ul").children("li")          相当于$("ul>li”)，最近一级(亲儿子)
+        find(selector)     √ $("ul").find("li");             相当于$("ul li”)，后代选择器
+        siblings(selector) √ $(".first").siblings("li");     查找兄弟节点，不包括自己本身
+        nextAl1([expr])      $(".first").nextAll()           查找当前元素之后所有的同辈元素
+        prevtAll([expr])     $(".last").prevAll()            查找当前元素之前所有的同辈元素
+        hasClass(class)      $('div').hasClass("protected")  检查当前的元素是否含有某个特定的类，如果有，则返回true
+        eq(index)          √ $("li").eq(2)；                 相当于$("li:eq(2)"), index 从0开始 推荐使用
+    -->
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <script>
+        $(function(){
+            // 1.父 
+            console.log($(".son").parent()); 
+        })
+    </script>
+
+
+
+    <!-- jquery排他思想 利用选择器 -->
+    <button></button>
+    <button></button>
+    <button></button>
+    <script>
+        $(function(){
+            // 1.隐式迭代 给所有事件都绑定点击事件
+             $("button").click(function(){
+                // 2.当前元素变化背景颜色
+                $(this).css("background", "pink");
+                // 3.其余兄弟去掉背景颜色 隐式迭代
+                $(this).siblings("button").css("background", "");
+             })
+        })
+    </script>
+
+
+
+    <!-- jquery样式操作 -->
+    <!-- 1.简单操作 直接.css 属性名一定加引号 -->
+    <script>
+        $("div").css({
+            width:400,
+            height: 400,
+            backgroundColor:"pink"   // 复合属性一定驼峰命名法 不是数字一定引号
+        });
+    </script>
+    
+    <!-- 2.类操作 -->
+    <div class="current"></div>
+    <script>
+        $(function(){
+            // 1.添加类
+            $("div").click(function(){
+                $(this).addClass("current");
+            })
+
+            // 2.删除类
+            $("div").click(function () {
+                $(this).removeClass("current");
+            })            
+
+            // 3.切换类
+            $("div").click(function () {
+                $(this).toggleClass("current");
+            })  
+        })
+    </script>
+
+
+
+    <!-- jquery效果 -->
+    <!-- 1.显示隐藏 
+            show([spread, [easing], [fn]])   (速度，效果，回调函数) 参数可以省略
+            hide([spread, [easing], [fn]])  
+            toggle([spread, [easing], [fn]])
+         2.滑动
+            slideDown([spread, [easing], [fn]]) 
+            slideUp([spread, [easing], [fn]])  
+            slideToggle([spread, [easing], [fn]])
+         3.淡入淡出
+            fadeln([spread, [easing], [fn]])  
+            fadeOut([spread, [easing], [fn]])  
+            fadeToggle([spread, [easing], [fn]])  
+            fadeTo([spread], opacity, [easing], [fn]])    修改透明度  opacity取值0-1
+         4.自定义动画
+            animate(params, [spread], [easing], [fn])       
+                params：想要更改的样式属性，以对象形式传递，必须写。属性名可以不用带引号，如果是复合属性则需要采
+                        取驼峰命名法borderLeft。其余参数都可以省略。  
+    -->
+    <button>显示</button>
+    <button>隐藏</button>
+    <button>切换</button>
+    <div></div>
+    <script>
+        $(function(){
+            $("button").eq(1).click(function(){
+                $("div").hide("fast", function(){   // 1000,function(){}
+                    alert(1);
+                });
+            })
+        })
+    </script>
+
+    <button>下拉滑动</button>
+    <button>上拉滑动</button>
+    <button>切换滑动</button>
+    <div></div>
+    <script>
+        $(function () {
+            $("button").eq(0).click(function () {
+                $("div").slideDown("fast", function () {   // 1000,function(){}
+                    alert(1);
+                });
+            })
+        })
+    </script>
+
+
+
+    <!-- 事件切换 -->
+    <!-- hover([over,]out) 
+        over鼠标移到元素上会触发的函数  (mouseenter)
+        out 鼠标移出元素会触发的函数    (mouseleave)
+    -->
+
+    <!-- 动画队列及停止排队方法 stop() -->
+    <!-- 一定要写在动画的前面 -->
+
+    <ul class="nav">
+        <li></li>
+    </ul>
+    <script>
+        $(function(){
+            // 鼠标经过
+            $(".nav>li").mouseover(function(){
+                $(this).children("ul").slideDown(200);
+            });
+
+            // 鼠标离开
+            $(".nav>li").mouseout(function(){
+                $(this).children("ul").slideUp(200);
+            })
+        })
+
+        // 改成事件切换
+        $(".nav>li").hover(function(){
+            $(this).children("ul").slideDown(200);
+        }, function(){
+            $(this).children("ul").slideUp(200);
+        })
+
+        // 再改进    如果只写一个函数，那么鼠标经过和离开都触发
+        $(".nav>li").hover(function(){
+            $(this).children("ul").slideToggle(200);
+        })
+
+        // 停止动画
+        $(".nav>li").hover(function () {
+            $(this).children("ul").stop().slideToggle(200);
+        })
+    </script>
+
+
+    <!-- 自定义动画 animate -->
+    <!-- 一定要定位 -->
+    <button>动起来</button>
+    <div></div>
+    <script>
+        $(function(){
+            $("button").click(function(){
+                $("div").animate({  // 写成对象
+                    left:500
+                }, 500);
+            })
+        })
+    </script>
+
+
+
+    <!-- jquery元素操作 -->
+    <!-- 1.遍历元素 -->
+    <!-- $("div").each(function(index, domEle){xxx;})
+        each遍历
+        index每个元素的索引
+        domEle表示dom对象 不是jquery对象     有dom对象和jquery对象转换 
+    -->
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <script>
+        $(function(){
+           // $("div").css("color", "red");
+
+           // 遍历方法1
+           var arr = ["red", "blue", "pink"];
+           $("div").each(function(index,domEle){    //  类似for循环
+                console.log(index);   // 可以改参数名
+                console.log(domEle);  // 元素dom对象
+                
+                // 对象转换  遍历单独设置属性
+                $(domEle).css("color", arr[i]);
+           })
+
+           // 遍历方法2
+           $.each($("div"), function(i, ele){
+                $(domEle).css("color", arr[i]);
+           })
+        })
+    </script>
+
+
+    
+    <ul>
+        <li></li>
+    </ul>
+    <div class="test"></div>
+    <script>
+        // 2.创建元素 $("<li></li>");
+        var li = $("<li>我是新建的li</li>");
+
+        // 3.添加元素  内部添加完是父子关系 外部添加完是兄弟关系
+        // 内部添加: element.append("内容") 加到最后   element.prepend("内容") 加到前面
+        $("ul").append(li);
+        // 外部添加: element.after("内容") 加到最后   element.before("内容") 加到前面 
+        $("ul").after(li);
+
+        // 4.删除元素 element.remove() 删除匹配元素本身 自杀
+        $("ul").remove(li);
+
+        // element.empty() 删除匹配元素集合中所有子节点 删孩子
+
+        // element.html() 删除匹配的元素内容 删孩子
+    </script>
+
+
+
+    <!-- jquery尺寸、位置操作 -->
+    <!-- 尺寸
+        1.width() / height()                  取得匹配元素宽度和高度值 只算 width/height
+        2.innerWidth() / innerHieght()        取得匹配元素宽度和高度值 包含padding
+        3.outerWidth()/outerHeight()          取得匹配元素宽度和高度值 包含 padding、border
+        4.outerWidth(true)/outerHeight(true)  取得匹配元素宽度和高度值 包含padding、borde、margin    
+        
+        以上参数为空，则是获取相应值，返回的是数字型。
+        如果参数为数字，则是修改相应值。
+        参数可以不必写单位。
+
+        位置
+        1.offset()                    
+            设置或返回被选元素相对于文档的偏移坐标，跟父级没有关系。
+            该方法有2个属性left、top。  
+            offset().top用于获取距离文档顶部的距离，offset().left用于获取距离文档左侧的距离。
+            可以设置元素的偏移：offset((top:10,left:30});
+        2.position()
+            获取元素偏移
+            用于返回被选元素相对于带有定位的父级偏移坐标，如果父级都没有定位，则以文档为准。
+            只能获取 不能修改
+        3.scrollTop()  scrollLeft()
+            设置或获取元素被卷去的头部和左侧  获取在页面滚动事件中被隐藏的部分
+            top头部   left左侧
+        
+    -->
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <div class="back">返回顶部</div>
+    <div class="container"></div>
+    <script>
+        $(function(){
+            // 尺寸
+            console.log($("div").width());  // 获取
+            $("div").width(300);   // 修改
+        
+            // 位置
+            // offset
+            console.log($(".son").offset());
+            console.log($(".son").offset().top());
+            $(".son").offset({
+                top: 200,
+                left: 200
+            })
+
+            // position
+            console.log($(".son").position());
+            
+            // scroll
+            $(document).scrollTop(100);   // 回到起点的高度
+            // 页面滚动事件
+            var boxTop = $(".container").offset().top();  // 画面
+            $(window).scroll(function(){
+                console.log($(document).scrollTop());  
+                if($(document).scrollTop() >= boxTop){
+                    $(".back").fadeIn();
+                }
+                else{
+                    $(".back").fadeOut();
+                }
+            });
+            // 返回顶部
+            $(".back").click(function(){
+                $(document).scrollTop(0);
+            })
+        })
+    </script>
+
+
+
+    <!-- jquery事件 -->
+    <!-- 1.单个事件注册
+        语法： element.事件(function(){})
+              $("div").click(function() {事件处理程序})
+        其他事件和原生基本一致。
+        比如mouseover、mouseout、blur、focus、change、keydown、keyup、resize、scroll等 
+    
+        2.多事件 on()绑定事件
+        on()方法在匹配元素上绑定一个或多个事件的事件处理函数
+        语法：element.on (events, [selector], fn)
+            1.events:一个或多个用空格分隔的事件类型，如"click"或"keydown"
+            2.selector:元素的子元素选择器。
+            3.fn：回调函数 即绑定在元素身上的侦听函数。
+
+        3.自动触发事件 trigger()
+        有些事件希望自动触发，比如轮播图自动播放功能跟点击右侧按钮一致。可以利用定时器自动触发右侧按钮点击事件，
+        不必鼠标点击触发。
+            element.click()         //第一种简写形式
+
+            element.trigger("type") //第二种自动触发模式
+            $("p").on("click", function(){
+                alert("hi~")；
+            });
+            $("p").trigger("click");// 此时自动触发点击事件，不需要鼠标点击
+
+            element.triggerHandler (type) // 第三种自动触发模式
+    -->
+    <div></div>
+    <ul>
+        <li></li>
+    </ul>
+    <script>
+        $(function(){
+            //1.单个事件注册
+            // $("div").click(function() {
+            //      $(this).css("background", "purple");
+            // });
+            // $("div") .mouseenter(function() {
+            //      $(this).css("background", "skyblue");
+            // })；
+
+            // 2.事件处理on
+            $("div").on({
+                mouseenter: function () {
+                $(this).css("background", "skyblue");
+                },
+                click: function () {
+                    $(this).css("background", "purple");
+                },
+                mouseleave: function () {
+                    $(this).css("background", "blüe");
+                }
+            });
+
+            // 如果事件处理相同 on()简写
+            $("div").on ("mouseenter mouseleave", function() {
+                $(this).toggleClass("current");
+            });
+
+
+
+            // on()做事件委派
+            // 事件委派的定义就是，把原来加给子元素身上的事件绑定在父元素身上，就是把事件委派给父元素。
+            $('ul').on('click','li', function () {
+                alert('hello wold!');   // click绑定在ul上 但触发对象是li
+            });
+
+
+
+            // on()动态创建元素
+            $("ul li").click(function(){
+                alert(11);
+            })
+            var li = $("<li>我是新创建的li<li>");
+            $("ul").append(li);
+
+
+
+            // 3.解绑off()
+            /* off()方法可以移除通过on()方法添加的事件处理程序。
+                $("p").off()                 // 解绑p元素所有事件处理程序
+                $("p").off("click")          // 解绑p元素上面的点击事件 后面的 foo 是侦听函数名
+                $("ul").off("click", "li");  // 解绑事件委托
+                如果有的事件只想触发一次，可以使用one()来绑定事件。
+            */
+            $("p").one("click", function(){
+                alert();
+            })
+        })
+    </script>
+
+
+
+    <!-- trigger() -->
+    <!-- 写在head里 -->
+    <script>
+        $(function () {
+            $("div").on("click", function () {
+                alert(11);
+            });
+            //自动触发事件
+            // 1.元素.事件()  
+            // $("div").click();  会触发元素的默认行为
+            // 2.元素.trigger("事件”)
+            // $("div").trigger("click");  会触发元素的默认行为
+            // 3.I元素.triggerHandler("事件")
+            $("div").triggerHandler("click");   // 不会触发元素的默认行为
+            $("input").on("focus", function () {
+                $(this).val("你好吗");
+            });
+            // $("input").triggerHandler("focus");
+        })
+    </script>
+     
+
+
+    <!-- jquery事件对象 -->
+    <!-- element.on (events, [selector], function(event) {})
+        阻止默认行为：event.preventDefault() 或者 return false
+        阻止冒泡：event.stopPropagation() 
+    -->
+    <script>
+        $(function (){
+            $(document).on("click", function () {
+                console.log("点击了document");
+            })
+            $("div").on("click", function (event) {
+                // console.log(event)；
+                console.log("点击了div");
+                event.stopPropagation();
+            })
+        })
+    </script>
+
+
+
+    <!-- jquery拷贝 -->
+    <!-- 如果想要把某个对象拷贝（合并）给另外一个对象使用，此时可以使用$.extend()方法
+        语法：$.extend([deep], target, object1, [objectN])
+            1.deep：如果设为true为深拷贝，默认为false 浅拷贝
+            2.target：要拷贝的目标对象
+            3.object1：待拷贝到第一个对象的对象。
+            4.objectN:待拷贝到第N个对象的对象。
+            5.浅拷贝是把被拷贝的对象复杂数据类型中的地址拷贝给目标对象，修改目标对象会影响被拷贝对象。
+            6.深拷贝，前面加true，完全克隆（拷贝的对象，而不是地址），修改目标对象不会影响被拷贝对象。
+        
+        浅拷贝: 复制值 底层还是同一个对象
+        深拷贝: 复制地址 全部复制 新开辟空间
+    -->
+    <script>
+        $(function (){
+            var targetobj = {};
+            var obj = {
+                id: 1,
+                name: "andy"
+            };
+            // $.extend(target, obj);
+            $.extend(target0bj, obj);
+            console.log(targetObj);   // 如果拷贝位置原来有数据 直接覆盖
+
+            // 1.浅拷贝把原来对象里面的复杂数据类型地址拷贝给目标对象
+            // targetObj.msg.age = 20;
+            // console.log(targetObj);
+            // console.log(obj)；
+            // 2. 深拷贝把里面的数据完全复制一份给目标对象 如果里面有不冲突的属性，
+            $.extend(true, targetObj, obj);
+            // console.log(target0bj)；// 会覆盖targetobj 里面原来的数据
+            targetObj.msg.age = 20;
+            console.log(targetObj);
+            console.log(obj);
+        })
+    </script>
+</body>
+
+</html>

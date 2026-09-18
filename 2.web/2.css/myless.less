@@ -1,0 +1,40 @@
+// less
+
+// 1.变量 
+// 不能以数字开头 不能包含特殊字符
+// @变量名: 值;
+@color: pink;
+
+body {
+    background-color: @color;
+}
+
+div {
+    color: @color;
+}
+
+
+// 2.编译
+// 通过vocode Less插件 Easy LESS      生成css文件 
+
+// 3.嵌套
+.head {
+    a {
+        color: #000;
+
+        // 伪类 伪元素 交集选择器 需要&
+        &:hover {
+            color: aliceblue;
+        }
+    }
+}
+
+// 4.计算
+// 一定写空格 结果以第一个单位为准
+@border: 5px + 5;
+
+div {
+    width: 200px;
+    height: 200px;
+    border: @border solid #666 - #222; // 颜色为 #444
+}
